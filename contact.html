@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>যোগাযোগ - দালাল সংঘ, Manikganj</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: #f8fafc;
+            scroll-behavior: smooth;
+        }
+
+        .ticker-bg {
+            background: #be123c;
+        }
+
+        .hero-contact {
+            background: linear-gradient(135deg, #064e3b 0%, #000000 100%);
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        .animate-marquee {
+            animation: marquee 25s linear infinite;
+        }
+
+        .nav-link {
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: #15803d;
+        }
+
+        .nav-link.active {
+            color: #15803d;
+        }
+        
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #15803d;
+        }
+
+        #custom-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        @keyframes popupIn {
+            from { opacity: 0; transform: scale(0.9) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .animate-popup {
+            animation: popupIn 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <!-- Custom Funny Popup -->
+    <div id="custom-modal">
+        <div class="bg-white p-8 rounded-[40px] max-w-lg w-full text-center shadow-2xl border-4 border-red-600 animate-popup">
+            <div class="w-20 h-20 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i class="fa-solid fa-skull-crossbones text-4xl"></i>
+            </div>
+            <h2 class="text-3xl font-black text-slate-900 mb-4">সতর্কবার্তা: টাকা হাওয়া!</h2>
+            <p id="modal-text" class="text-xl font-bold text-slate-600 mb-8 leading-relaxed"></p>
+            <button onclick="closeModal()" class="bg-red-600 text-white px-8 py-3 rounded-full font-black hover:bg-red-700 transition">আমি ভয়ে চুপ হয়ে গেলাম</button>
+        </div>
+    </div>
+
+    <!-- Header Section -->
+    <header class="sticky top-0 z-50">
+        <div class="ticker-bg text-white py-2 overflow-hidden whitespace-nowrap border-b-2 border-yellow-400">
+            <div class="animate-marquee inline-block font-bold">
+                জরুরি নোটিশ: ফোনে টাকা ছাড়া দালালি বিষয়ক আলাপ করা নিষেধ... বিকাশ নম্বর চাইলে সরাসরি বটতলায় চলে আসুন... পুলিশ দেখিলে আমাদের চিনিবেন না!
+            </div>
+        </div>
+
+        <nav class="bg-white shadow-md border-b-4 border-green-700">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row justify-between items-center py-4 md:h-20">
+                    <a href="index.html" class="flex items-center justify-between w-full md:w-auto">
+                        <span class="text-2xl font-black text-green-800 tracking-tighter">DALAL<span class="text-red-600">SONGHO</span></span>
+                        <div class="md:hidden text-2xl" onclick="toggleMobileMenu()">
+                            <i class="fa-solid fa-bars"></i>
+                        </div>
+                    </a>
+                    
+                    <div id="nav-menu" class="hidden md:flex flex-wrap items-center justify-center space-x-2 md:space-x-6 font-bold text-xs md:text-sm mt-4 md:mt-0">
+                        <a href="index.html" class="nav-link px-2 py-1">মূলপাতা</a>
+                        <a href="about.html" class="nav-link px-2 py-1">আমাদের লক্ষ্য</a>
+                        <a href="niyom.html" class="nav-link px-2 py-1">নিয়মাবলী</a>
+                        <a href="return.html" class="nav-link px-2 py-1">ফেরত নীতি</a>
+                        <a href="contact.html" class="nav-link px-2 py-1 active">যোগাযোগ</a>
+                        <button onclick="showCustomMessage('আগে পেমেন্ট দিন, তারপর নাম্বার দেবো!')" class="bg-red-600 text-white px-4 py-2 rounded-full hover:bg-red-700 shadow-lg animate-pulse ml-2">জরুরি দালালি</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-contact text-white py-24 text-center relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10">
+                <i class="fa-solid fa-phone-slash text-[300px] absolute -top-10 -right-20 rotate-12"></i>
+            </div>
+            <div class="max-w-7xl mx-auto px-4 relative z-10">
+                <h1 class="text-5xl md:text-7xl font-black mb-6 uppercase tracking-tighter">যোগাযোগ করুন <br><span class="text-yellow-400">(যদি সাহস থাকে)</span></h1>
+                <p class="text-xl md:text-2xl font-bold text-slate-400 italic">আমরা সব সময় আপনার টাকা নিতে প্রস্তুত।</p>
+            </div>
+        </section>
+
+        <section class="py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                    <!-- Contact Info -->
+                    <div class="space-y-12">
+                        <div>
+                            <h2 class="text-4xl font-black text-slate-900 mb-8 border-b-4 border-yellow-500 inline-block">আমাদের আস্তানা</h2>
+                            <div class="space-y-8">
+                                <div class="flex items-start gap-6">
+                                    <div class="bg-slate-100 p-4 rounded-2xl text-green-700">
+                                        <i class="fa-solid fa-location-dot text-3xl"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xl font-black">হেড অফিস (অস্থায়ী)</h4>
+                                        <p class="text-lg font-bold text-slate-500 italic leading-relaxed">পাসপোর্ট অফিসের পিছনের বটগাছ তলার চায়ের দোকান। (৩ নম্বর বেঞ্চের কোণায় সভাপতি সাহেব বসেন)</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-6">
+                                    <div class="bg-slate-100 p-4 rounded-2xl text-red-600">
+                                        <i class="fa-solid fa-phone-volume text-3xl"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xl font-black">জরুরি দালালি হেল্পলাইন</h4>
+                                        <p class="text-lg font-bold text-slate-500">০১৭০০-৪২০৪২০ (ফোন করলে সব সময় ব্যস্ত পাইবেন)</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-6">
+                                    <div class="bg-slate-100 p-4 rounded-2xl text-blue-600">
+                                        <i class="fa-solid fa-envelope-open-text text-3xl"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xl font-black">ইমেইল ঠিকানা</h4>
+                                        <p class="text-lg font-bold text-slate-500">batpari@dalalsongho.com (পড়ার সময় আমাদের নাই)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Working Hours -->
+                        <div class="bg-slate-50 p-10 rounded-[40px] border-2 border-slate-200">
+                            <h3 class="text-2xl font-black mb-6 flex items-center gap-3">
+                                <i class="fa-solid fa-clock text-yellow-600"></i> দালালি সময়সূচী
+                            </h3>
+                            <ul class="space-y-4 font-bold text-slate-600">
+                                <li class="flex justify-between border-b pb-2"><span>রবি - বৃহস্পতিবার:</span> <span class="text-green-700">সকাল ১০টা - পকেট খালি হওয়া পর্যন্ত</span></li>
+                                <li class="flex justify-between border-b pb-2"><span>শুক্রবার:</span> <span class="text-red-600">অফিস বন্ধ (শুধুমাত্র বিরিয়ানি পার্টি)</span></li>
+                                <li class="flex justify-between"><span>শনিবার:</span> <span class="text-orange-600">টাকা কালেকশন ডে</span></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="bg-slate-900 p-10 md:p-16 rounded-[60px] shadow-2xl relative">
+                         <!-- Hidden Loading Overlay -->
+                        <div id="contact-overlay" class="hidden absolute inset-0 bg-black/90 z-50 rounded-[60px] flex items-center justify-center p-6 text-center">
+                            <div>
+                                <div id="loader-status" class="text-2xl font-black text-green-500 mb-6 italic">সার্ভার আপনার ফাইল চেক করছে...</div>
+                                <div class="w-48 bg-slate-800 h-2 rounded-full mx-auto overflow-hidden">
+                                    <div id="loader-progress" class="bg-green-600 h-full w-0 transition-all"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3 class="text-3xl font-black text-white mb-8">ঘুষের অফার পাঠান</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <label class="block text-slate-400 font-bold mb-2 ml-2">আপনার নাম (যে নামে বাটপারি করবেন)</label>
+                                <input type="text" id="sender-name" class="w-full p-5 rounded-2xl bg-white/5 border-2 border-white/10 text-white outline-none focus:border-green-600 transition font-bold">
+                            </div>
+                            <div>
+                                <label class="block text-slate-400 font-bold mb-2 ml-2">টাকার পরিমাণ (বিকাশ ব্যালেন্স)</label>
+                                <input type="number" id="bribe-amount" placeholder="৳" class="w-full p-5 rounded-2xl bg-white/5 border-2 border-white/10 text-white outline-none focus:border-green-600 transition font-bold">
+                            </div>
+                            <div>
+                                <label class="block text-slate-400 font-bold mb-2 ml-2">বিস্তারিত বাটপারি (কি হেল্প লাগবে)</label>
+                                <textarea id="bribe-msg" class="w-full p-5 h-40 rounded-2xl bg-white/5 border-2 border-white/10 text-white outline-none focus:border-green-600 transition font-bold"></textarea>
+                            </div>
+                            <button onclick="handleContactSubmit()" class="w-full bg-green-700 text-white py-5 rounded-2xl font-black text-2xl hover:bg-green-800 transition shadow-xl hover:shadow-green-900/40 uppercase tracking-tighter">ঘুষের অফার পাঠান</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sarcastic Map Section -->
+        <section class="py-24 bg-slate-50 text-center">
+            <div class="max-w-4xl mx-auto px-4">
+                <h2 class="text-4xl font-black mb-10">লাইভ লোকেশন</h2>
+                <div class="bg-slate-200 h-96 rounded-[60px] flex items-center justify-center border-8 border-white shadow-inner relative overflow-hidden">
+                    <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/grid.png')] opacity-20"></div>
+                    <div class="relative z-10 p-10">
+                        <i class="fa-solid fa-map-location-dot text-8xl text-slate-400 mb-6"></i>
+                        <p class="text-2xl font-black text-slate-500 italic">ম্যাপ দেখার টাইম নাই, সোজা পাসপোর্ট অফিসের পিছনে বটতলায় চায়ের দোকানে চলে আসুন।</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-black text-slate-600 py-20 border-t-8 border-red-600 text-center">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-4xl font-black text-white mb-8 uppercase tracking-[15px]">দালাল সংঘ <span class="text-red-600">মানিকগঞ্জ</span></h2>
+            <div class="flex justify-center space-x-12 mb-16">
+                <a href="#" class="text-slate-400 hover:text-yellow-400 transition transform hover:scale-150"><i class="fa-brands fa-facebook-f text-4xl"></i></a>
+                <a href="#" class="text-slate-400 hover:text-green-400 transition transform hover:scale-150"><i class="fa-brands fa-whatsapp text-4xl"></i></a>
+            </div>
+            <p class="text-[12px] uppercase tracking-[12px] font-bold">&copy; ২০২৫ সকল দালালি সংরক্ষিত। লাইসেন্স নং: ৪২০/ঘুষ-শাখা।</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('nav-menu');
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('flex');
+        }
+
+        function showCustomMessage(text) {
+            const modal = document.getElementById('custom-modal');
+            const modalText = document.getElementById('modal-text');
+            modalText.innerText = text;
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('custom-modal').style.display = 'none';
+        }
+
+        function handleContactSubmit() {
+            const name = document.getElementById('sender-name').value;
+            const amount = document.getElementById('bribe-amount').value;
+            const msg = document.getElementById('bribe-msg').value;
+
+            if(!name || !amount || !msg) {
+                showCustomMessage("সব ঘর পূরণ করুন! আমরা ফ্রি সেবা দেই না।");
+                return;
+            }
+
+            const overlay = document.getElementById('contact-overlay');
+            const progress = document.getElementById('loader-progress');
+            const status = document.getElementById('loader-status');
+
+            overlay.classList.remove('hidden');
+            let p = 0;
+
+            const interval = setInterval(() => {
+                p += 5;
+                progress.style.width = p + '%';
+
+                if(p === 30) status.innerText = "বিকাশ ব্যালেন্স হ্যাক করা হচ্ছে...";
+                if(p === 60) status.innerText = "আপনার আইপি অ্যাড্রেস ট্র্যাক করা হচ্ছে...";
+                if(p === 90) status.innerText = "টাকা আমাদের ভল্টে পাঠানোর প্রস্তুতি চলছে...";
+
+                if(p >= 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        overlay.classList.add('hidden');
+                        showCustomMessage(`জনাব ${name}, অভিনন্দন! আপনার দেওয়া ${amount} টাকা সফলভাবে আমাদের 'গোপন ভল্ট'-এ স্থানান্তরিত হয়েছে এবং আপনার অ্যাকাউন্ট থেকে চিরতরে হাওয়া হয়ে গেছে। এখন আর টাকা ফেরত চেয়ে আমাদের বিরক্ত করার চেষ্টা করবেন না। বেশি বাড়াবাড়ি করলে আপনার লোকেশন সরাসরি ডিবি অফিসে পাঠিয়ে দেওয়া হবে—তখন পাসপোর্ট তো দূরে থাক, নিজের বাড়ি চেনাই কঠিন হয়ে যাবে! এখন ভালো ছেলের মতো এই ট্যাব বন্ধ করুন এবং বাকি ক্যাশ নিয়ে সরাসরি বটতলায় এসে হাজিরা দিন।`);
+                        
+                        // Clear form
+                        document.getElementById('sender-name').value = "";
+                        document.getElementById('bribe-amount').value = "";
+                        document.getElementById('bribe-msg').value = "";
+                        progress.style.width = '0%';
+                        status.innerText = "সার্ভার আপনার ফাইল চেক করছে...";
+                    }, 500);
+                }
+            }, 150);
+        }
+    </script>
+</body>
+</html>
