@@ -23,14 +23,6 @@
             background: #be123c;
         }
 
-        .page-section {
-            display: none;
-        }
-
-        .page-section.active {
-            display: block;
-        }
-
         @keyframes marquee {
             0% { transform: translateX(100%); }
             100% { transform: translateX(-100%); }
@@ -48,6 +40,7 @@
             color: #15803d;
         }
 
+        /* Active class for the current page */
         .nav-link.active {
             color: #15803d;
         }
@@ -65,42 +58,45 @@
 </head>
 <body class="text-slate-800">
 
-    <!-- Breaking News Ticker -->
-    <div class="ticker-bg text-white py-2 overflow-hidden whitespace-nowrap border-b-2 border-yellow-400">
-        <div class="animate-marquee inline-block font-bold">
-            ব্রেকিং নিউজ: অফিসের এসি নষ্ট হওয়ায় দালালি ফি ১০০০ টাকা বৃদ্ধি পাইয়াছে... সিসিটিভি ক্যামেরা সাময়িকভাবে বন্ধ রাখা হয়েছে, নির্ভয়ে লেনদেন করুন... আজ সকল দালালদের জন্য 'হাফ-পাস' ডিসকাউন্ট... ফাইলে টাকা কম দিলে ফাইল আর কোনোদিন পাওয়া যাইবে না বলিয়া সভাপতি সাহেব হুশিয়ারি দিয়াছেন... 
-        </div>
-    </div>
-
-    <!-- Navigation -->
-    <nav class="sticky top-0 z-50 bg-white shadow-md border-b-4 border-green-700">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center py-4 md:h-20">
-                <div class="flex items-center justify-between w-full md:w-auto cursor-pointer" onclick="showPage('home')">
-                    <span class="text-2xl font-black text-green-800 tracking-tighter">DALAL<span class="text-red-600">SONGHO</span></span>
-                    <!-- Mobile Menu Toggle (Simplified) -->
-                    <div class="md:hidden text-2xl" onclick="toggleMobileMenu()">
-                        <i class="fa-solid fa-bars"></i>
-                    </div>
-                </div>
-                
-                <!-- Nav Options: Now visible on medium screens and up, with a wrap for smaller ones -->
-                <div id="nav-menu" class="flex flex-wrap items-center justify-center space-x-2 md:space-x-6 font-bold text-xs md:text-sm mt-4 md:mt-0">
-                    <button onclick="showPage('home')" class="nav-link px-2 py-1 active" id="btn-home">মূলপাতা</button>
-                    <button onclick="showPage('about')" class="nav-link px-2 py-1" id="btn-about">আমাদের লক্ষ্য</button>
-                    <button onclick="showPage('niyom')" class="nav-link px-2 py-1" id="btn-niyom">নিয়মাবলী</button>
-                    <button onclick="showPage('return')" class="nav-link px-2 py-1" id="btn-return">ফেরত নীতি</button>
-                    <button onclick="showPage('contact')" class="nav-link px-2 py-1" id="btn-contact">যোগাযোগ</button>
-                    <button onclick="alert('টাকা আগে বিকাশ করুন, তারপর ইমারজেন্সি কথা হবে!')" class="bg-red-600 text-white px-4 py-2 rounded-full hover:bg-red-700 shadow-lg animate-pulse ml-2">জরুরি দালালি</button>
-                </div>
+    <!-- Header Section -->
+    <header class="sticky top-0 z-50">
+        <!-- Breaking News Ticker -->
+        <div class="ticker-bg text-white py-2 overflow-hidden whitespace-nowrap border-b-2 border-yellow-400">
+            <div class="animate-marquee inline-block font-bold">
+                ব্রেকিং নিউজ: অফিসের এসি নষ্ট হওয়ায় দালালি ফি ১০০০ টাকা বৃদ্ধি পাইয়াছে... সিসিটিভি ক্যামেরা সাময়িকভাবে বন্ধ রাখা হয়েছে, নির্ভয়ে লেনদেন করুন... আজ সকল দালালদের জন্য 'হাফ-পাস' ডিসকাউন্ট... ফাইলে টাকা কম দিলে ফাইল আর কোনোদিন পাওয়া যাইবে না বলিয়া সভাপতি সাহেব হুশিয়ারি দিয়াছেন... 
             </div>
         </div>
-    </nav>
 
-    <!-- SECTION: HOME -->
-    <main id="home-page" class="page-section active">
-        <!-- Original Hero Section RESTORED -->
-        <header id="home" class="hero-gradient text-white overflow-hidden">
+        <!-- Navigation Bar -->
+        <nav class="bg-white shadow-md border-b-4 border-green-700">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row justify-between items-center py-4 md:h-20">
+                    <a href="index.html" class="flex items-center justify-between w-full md:w-auto">
+                        <span class="text-2xl font-black text-green-800 tracking-tighter">DALAL<span class="text-red-600">SONGHO</span></span>
+                        <!-- Mobile Menu Toggle -->
+                        <div class="md:hidden text-2xl" onclick="toggleMobileMenu()">
+                            <i class="fa-solid fa-bars"></i>
+                        </div>
+                    </a>
+                    
+                    <!-- Nav Options (Links) -->
+                    <div id="nav-menu" class="hidden md:flex flex-wrap items-center justify-center space-x-2 md:space-x-6 font-bold text-xs md:text-sm mt-4 md:mt-0">
+                        <a href="index.html" class="nav-link px-2 py-1 active">মূলপাতা</a>
+                        <a href="about.html" class="nav-link px-2 py-1">আমাদের লক্ষ্য</a>
+                        <a href="niyom.html" class="nav-link px-2 py-1">নিয়মাবলী</a>
+                        <a href="return.html" class="nav-link px-2 py-1">ফেরত নীতি</a>
+                        <a href="contact.html" class="nav-link px-2 py-1">যোগাযোগ</a>
+                        <button onclick="alert('টাকা আগে বিকাশ করুন, তারপর ইমারজেন্সি কথা হবে!')" class="bg-red-600 text-white px-4 py-2 rounded-full hover:bg-red-700 shadow-lg animate-pulse ml-2">জরুরি দালালি</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content Area: HOME PAGE -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-gradient text-white overflow-hidden">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 flex flex-col md:flex-row items-center">
                 <div class="md:w-1/2 text-center md:text-left">
                     <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
@@ -127,10 +123,10 @@
                     </div>
                 </div>
             </div>
-        </header>
+        </section>
 
         <!-- Stats Section -->
-        <section id="about-mission" class="py-20 bg-slate-100">
+        <section class="py-20 bg-slate-100">
             <div class="max-w-4xl mx-auto px-4 text-center">
                 <h2 class="text-3xl font-bold mb-10 text-green-900 uppercase">আমাদের মূল লক্ষ্য</h2>
                 <div class="grid md:grid-cols-3 gap-8">
@@ -154,13 +150,12 @@
         </section>
 
         <!-- Committee Section -->
-        <section id="committee" class="py-20 bg-white">
+        <section class="py-20 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16">
                     <h2 class="text-4xl font-black text-slate-900 mb-4">কেন্দ্রীয় কার্যনির্বাহী কমিটি</h2>
                     <p class="text-slate-500 font-bold italic">মানিকগঞ্জ পাসপোর্ট অফিসের ভাগ্যবিধাতাগণ</p>
                 </div>
-
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
                     <div class="bg-slate-50 rounded-3xl p-6 border-b-4 border-yellow-500 shadow-lg">
                         <img src="https://images.prothomalo.com/prothomalo-bangla%2F2023-04%2F301f22e8-c576-47a2-9721-3965a396431f%2F1766599160.jpg" class="w-24 h-24 mx-auto rounded-full object-cover mb-4 border-4 border-white">
@@ -169,7 +164,7 @@
                     </div>
                     <div class="bg-slate-50 rounded-3xl p-6 border-b-4 border-blue-500 shadow-lg">
                         <i class="fa-solid fa-user-tie text-5xl text-blue-400 mb-4"></i>
-                        <h3 class="font-black text-green-900">মি. সই-জালিয়াতি</h3>
+                        <h3 class="font-black text-green-900">মি. সই-জালিয়াতি</h3>
                         <p class="text-red-600 text-xs font-bold">সহ-সভাপতি</p>
                     </div>
                     <div class="bg-slate-50 rounded-3xl p-6 border-b-4 border-purple-500 shadow-lg">
@@ -179,7 +174,7 @@
                     </div>
                     <div class="bg-slate-50 rounded-3xl p-6 border-b-4 border-red-500 shadow-lg">
                         <i class="fa-solid fa-running text-5xl text-red-400 mb-4"></i>
-                        <h3 class="font-black text-green-900">দৌড়ানি কাসেম</h3>
+                        <h3 class="font-black text-green-900">দৌড়ানি কাসেম</h3>
                         <p class="text-red-600 text-xs font-bold">সদস্য</p>
                     </div>
                 </div>
@@ -195,7 +190,7 @@
                         <input type="text" placeholder="ফাইল নম্বর (টাকা না দিলে পাবেন না)" class="w-full p-4 border-2 border-slate-200 rounded-xl outline-none font-bold text-center focus:border-green-600">
                         <button onclick="checkStatus()" class="w-full bg-green-700 text-white font-black py-4 rounded-xl hover:bg-green-800 transition shadow-lg">স্ট্যাটাস দেখুন</button>
                         <div id="statusResult" class="hidden mt-4 p-4 bg-red-100 text-red-700 border-2 border-dashed border-red-400 rounded-xl text-center font-black animate-bounce">
-                            ERROR: ফাইলে বিরিয়ানি খরচের ঘাটতি পাওয়া গেছে!
+                            ERROR: ফাইলে বিরিয়ানি খরচের ঘাটতি পাওয়া গেছে!
                         </div>
                     </div>
                 </div>
@@ -211,8 +206,8 @@
                         <h3 class="text-2xl font-black mb-4">সিলভার দালাল</h3>
                         <p class="text-4xl font-black text-slate-900 mb-6">৳ ৫,০০০</p>
                         <ul class="space-y-3 text-sm font-bold text-slate-500 mb-8">
-                            <li><i class="fa-solid fa-check text-green-500 mr-2"></i>লাইনে দাঁড়িয়ে দেওয়া (২ ঘন্টা)</li>
-                            <li><i class="fa-solid fa-check text-green-500 mr-2"></i>পিয়নকে পাম-পট্টি দেওয়া</li>
+                            <li><i class="fa-solid fa-check text-green-500 mr-2"></i>লাইনে দাঁড়িয়ে দেওয়া (২ ঘন্টা)</li>
+                            <li><i class="fa-solid fa-check text-green-500 mr-2"></i>পিয়নকে পাম-পট্টি দেওয়া</li>
                         </ul>
                     </div>
                     <div class="bg-white p-8 rounded-3xl shadow-2xl border-b-[10px] border-yellow-500 scale-110 relative bg-yellow-50">
@@ -220,7 +215,7 @@
                         <h3 class="text-2xl font-black mb-4">গোল্ডেন দালাল</h3>
                         <p class="text-4xl font-black text-slate-900 mb-6">৳ ১৫,০০০</p>
                         <ul class="space-y-3 text-sm font-bold text-slate-700 mb-8">
-                            <li><i class="fa-solid fa-check text-green-500 mr-2"></i>লাইন ছাড়া সরাসরি রুমে প্রবেশ</li>
+                            <li><i class="fa-solid fa-check text-green-500 mr-2"></i>লাইন ছাড়া সরাসরি রুমে প্রবেশ</li>
                             <li><i class="fa-solid fa-check text-green-500 mr-2"></i>ভুল তথ্য সংশোধন (গ্যারান্টি)</li>
                         </ul>
                     </div>
@@ -228,112 +223,13 @@
                         <h3 class="text-2xl font-black mb-4">ভিআইপি ডন</h3>
                         <p class="text-4xl font-black text-slate-900 mb-6">৳ ৫০,০০০+</p>
                         <ul class="space-y-3 text-sm font-bold text-slate-500 mb-8">
-                            <li><i class="fa-solid fa-check text-green-500 mr-2"></i>বাড়িতে বসে ফিঙ্গারপ্রিন্ট</li>
+                            <li><i class="fa-solid fa-check text-green-500 mr-2"></i>বাড়িতে বসে ফিঙ্গারপ্রিন্ট</li>
                             <li><i class="fa-solid fa-check text-green-500 mr-2"></i>সভাপতির সাথে সেলফি ও ডিনার</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </section>
-    </main>
-
-    <!-- SECTION: ABOUT US -->
-    <main id="about-page" class="page-section bg-white py-24">
-        <div class="max-w-4xl mx-auto px-4 text-center">
-            <h2 class="text-5xl font-black mb-10 text-green-800">আমাদের গৌরবোজ্জ্বল ইতিহাস</h2>
-            <div class="space-y-8 text-lg leading-relaxed text-slate-700 font-medium">
-                <p class="bg-slate-50 p-10 rounded-[50px] border-l-[15px] border-yellow-500 text-left shadow-xl">
-                    আমরা ২০০৫ সাল থেকে মানিকগঞ্জ পাসপোর্ট অফিসের পিছনের বটগাছ তলা থেকে আমাদের "পকেট কাটিং" মিশন শুরু করি। আজ আমরা একটি আন্তর্জাতিক মানের সিন্ডিকেট। আমাদের টিমের প্রতিটি সদস্যের দুর্নীতির ওপর পিএইচডি (PhD) ডিগ্রি আছে।
-                </p>
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="bg-red-50 p-12 rounded-[40px] text-center border-4 border-white shadow-lg">
-                        <h4 class="text-5xl font-black text-red-700 mb-2">৫০০০+</h4>
-                        <p class="font-bold text-slate-600 uppercase tracking-widest text-sm">মানুষের পকেট সাফ</p>
-                    </div>
-                    <div class="bg-green-50 p-12 rounded-[40px] text-center border-4 border-white shadow-lg">
-                        <h4 class="text-5xl font-black text-green-700 mb-2">০</h4>
-                        <p class="font-bold text-slate-600 uppercase tracking-widest text-sm">টাকা ফেরতের রেকর্ড</p>
-                    </div>
-                </div>
-                <p class="italic text-3xl font-black text-slate-300 mt-20">
-                    "টাকা আপনার হাতের ময়লা, সেই ময়লা পরিষ্কার করাই আমাদের একমাত্র ইবাদত।"
-                </p>
-            </div>
-        </div>
-    </main>
-
-    <!-- SECTION: NIYOMABOLI -->
-    <main id="niyom-page" class="page-section bg-slate-100 py-24">
-        <div class="max-w-4xl mx-auto px-4">
-            <h2 class="text-5xl font-black mb-16 text-center text-red-600 uppercase tracking-tighter">দালাল সংঘের কঠোর নিয়মাবলী</h2>
-            <div class="space-y-6">
-                <div class="bg-white p-8 rounded-3xl shadow-sm flex items-start space-x-6 border-l-8 border-red-600 hover:bg-red-50 transition">
-                    <span class="bg-red-600 text-white w-14 h-14 rounded-full flex items-center justify-center font-black shrink-0 shadow-lg text-2xl italic">১</span>
-                    <p class="font-bold text-xl leading-relaxed">টাকা দেওয়ার সময় মুখে হাসি রাখতে হবে। কান্না করলে বা দীর্ঘশ্বাস ফেললে অতিরিক্ত ৫০০ টাকা "মন খারাপ ফি" দিতে হবে।</p>
-                </div>
-                <div class="bg-white p-8 rounded-3xl shadow-sm flex items-start space-x-6 border-l-8 border-red-600 hover:bg-red-50 transition">
-                    <span class="bg-red-600 text-white w-14 h-14 rounded-full flex items-center justify-center font-black shrink-0 shadow-lg text-2xl italic">২</span>
-                    <p class="font-bold text-xl leading-relaxed">অফিসের ভিতর আমাদের সাথে কথা বলা সম্পূর্ণ নিষিদ্ধ। আমাদের দেখলে এমনভাবে তাকাবেন যেন আমরা আপনার জানের দুশমন।</p>
-                </div>
-                <div class="bg-white p-8 rounded-3xl shadow-sm flex items-start space-x-6 border-l-8 border-red-600 hover:bg-red-50 transition">
-                    <span class="bg-red-600 text-white w-14 h-14 rounded-full flex items-center justify-center font-black shrink-0 shadow-lg text-2xl italic">৩</span>
-                    <p class="font-bold text-xl leading-relaxed">ডিবি পুলিশ বা সিসিটিভি ক্যামেরা দেখলে সাথে সাথে দৌড় দিতে হবে। ধরা পড়লে আমরা আপনাকে চিনি না—এই কথা ৩০০ টাকার স্ট্যাম্পে লিখে দিতে হবে।</p>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <!-- SECTION: RETURN POLICY -->
-    <main id="return-page" class="page-section bg-white py-24">
-        <div class="max-w-4xl mx-auto px-4 text-center">
-            <h2 class="text-5xl font-black mb-6 text-red-700">টাকা ফেরতের নিয়ম (Refund Policy)</h2>
-            <p class="text-xl font-bold mb-16 text-slate-500 italic">আমাদের ডিকশনারিতে "ফেরত" শব্দটির কোনো অস্তিত্ব নেই।</p>
-            
-            <div class="bg-slate-900 text-white p-12 rounded-[60px] shadow-2xl space-y-10 text-left">
-                <div class="border-b border-white/10 pb-8">
-                    <h3 class="text-2xl font-black text-yellow-500 mb-4 uppercase"><i class="fa-solid fa-burger mr-3"></i>ধারা ১.১: বিরিয়ানি ফ্যাক্টর</h3>
-                    <p class="text-slate-400 font-medium leading-relaxed">আপনার দেওয়া টাকা দিয়ে ইতিমধ্যে সভাপতি সাহেব এবং তার সাঙ্গপাঙ্গরা বিরিয়ানি খেয়ে ফেলেছেন। সুতরাং বিরিয়ানি পেট থেকে বের করে ফেরত না দেওয়া পর্যন্ত টাকা ফেরত সম্ভব নয়।</p>
-                </div>
-                <div class="border-b border-white/10 pb-8">
-                    <h3 class="text-2xl font-black text-yellow-500 mb-4 uppercase"><i class="fa-solid fa-brain mr-3"></i>ধারা ২.৪: মেমোরি লস</h3>
-                    <p class="text-slate-400 font-medium leading-relaxed">টাকা হাতে পাওয়ার ৫ সেকেন্ড পর আমাদের দালালদের সাময়িকভাবে স্মৃতিশক্তি লোপ পায়। আপনি কে, কেন টাকা দিয়েছেন এবং আমরা আপনাকে কি কথা দিয়েছিলাম—তা আমরা একদমই মনে রাখতে পারি না।</p>
-                </div>
-                <div>
-                    <h3 class="text-2xl font-black text-yellow-500 mb-4 uppercase"><i class="fa-solid fa-hand-holding-heart mr-3"></i>ধারা ৩.৯: আল্লাহর মাল</h3>
-                    <p class="text-slate-400 font-medium leading-relaxed">আপনার টাকা এখন আমাদের আমানত। আমানতের খেয়ানত করা মহাপাপ, তাই আমরা সেই টাকা আর আপনাকে ফেরত দিয়ে পাপের ভাগীদার হতে চাই না।</p>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <!-- SECTION: CONTACT -->
-    <main id="contact-page" class="page-section bg-slate-50 py-24">
-        <div class="max-w-5xl mx-auto px-4">
-            <div class="bg-green-900 text-white rounded-[80px] overflow-hidden shadow-2xl flex flex-col md:flex-row border-8 border-white">
-                <div class="md:w-1/2 p-16 bg-green-950">
-                    <h2 class="text-5xl font-black mb-8">সরাসরি ঘুষ দিন</h2>
-                    <p class="text-yellow-400 font-black mb-12 italic text-xl">ফোন ধরব না, অযথা রিং দিবেন না।</p>
-                    <div class="space-y-10">
-                        <div class="flex items-start space-x-6">
-                            <i class="fa-solid fa-location-dot text-4xl text-yellow-500"></i>
-                            <p class="font-bold text-lg">পাসপোর্ট অফিসের পিছনের বটগাছ তলার চায়ের দোকান। (বড় ভাইকে খুঁজছি বলবেন)</p>
-                        </div>
-                        <div class="flex items-start space-x-6">
-                            <i class="fa-solid fa-phone-slash text-4xl text-red-500"></i>
-                            <p class="font-bold text-lg">০১৭০০-৪২০৪২০ (লাইন সব সময় ব্যস্ত দেখাবে)</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="md:w-1/2 p-16 bg-white text-black">
-                    <form class="space-y-6" onsubmit="event.preventDefault(); alert('আপনার বার্তা সরাসরি রিসাইকেল বিন-এ পাঠানো হয়েছে। দয়া করে ক্যাশ নিয়ে বটতলায় দেখা করুন।')">
-                        <input type="text" placeholder="আপনার ছদ্মনাম" class="w-full p-5 rounded-2xl border-4 border-slate-100 outline-none focus:border-green-600 font-black text-lg">
-                        <input type="text" placeholder="বিকাশ নম্বর (টাকা পাঠানোর জন্য)" class="w-full p-5 rounded-2xl border-4 border-slate-100 outline-none focus:border-green-600 font-black text-lg">
-                        <textarea placeholder="কি কি বাটপারি করতে হবে বিস্তারিত লিখুন..." class="w-full p-5 rounded-2xl border-4 border-slate-100 outline-none focus:border-green-600 font-black text-lg h-40"></textarea>
-                        <button class="w-full bg-green-700 text-white font-black py-5 rounded-2xl hover:bg-green-800 transition shadow-2xl text-2xl uppercase tracking-tighter">ঘুষের অফার পাঠান</button>
-                    </form>
-                </div>
-            </div>
-        </div>
     </main>
 
     <!-- Footer -->
@@ -349,31 +245,23 @@
     </footer>
 
     <script>
-        function showPage(pageId) {
-            // Hide all pages
-            const pages = document.querySelectorAll('.page-section');
-            pages.forEach(p => p.classList.remove('active'));
-            
-            // Remove active style from links
-            const links = document.querySelectorAll('.nav-link');
-            links.forEach(l => l.classList.remove('active'));
-
-            // Show selected page
-            const target = document.getElementById(pageId + '-page') || document.getElementById('home-page');
-            target.classList.add('active');
-            window.scrollTo({top: 0, behavior: 'smooth'});
-
-            // Add active style to nav button
-            const activeBtn = document.getElementById('btn-' + pageId);
-            if(activeBtn) activeBtn.classList.add('active');
-        }
-
+        /**
+         * Mobile Menu Toggle
+         */
         function toggleMobileMenu() {
             const menu = document.getElementById('nav-menu');
-            menu.classList.toggle('hidden');
-            menu.classList.toggle('flex');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                menu.classList.add('flex');
+            } else {
+                menu.classList.add('hidden');
+                menu.classList.remove('flex');
+            }
         }
 
+        /**
+         * Sarcastic Status Checker
+         */
         function checkStatus() {
             const status = document.getElementById('statusResult');
             status.classList.remove('hidden');
