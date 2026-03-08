@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>নিয়মাবলী - দালাল সংঘ, মানিকগঞ্জ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: #f8fafc;
+            scroll-behavior: smooth;
+        }
+
+        .ticker-bg {
+            background: #be123c;
+        }
+
+        .hero-rules {
+            background: linear-gradient(135deg, #450a0a 0%, #000000 100%);
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        .animate-marquee {
+            animation: marquee 25s linear infinite;
+        }
+
+        .nav-link {
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: #15803d;
+        }
+
+        .nav-link.active {
+            color: #15803d;
+        }
+        
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #15803d;
+        }
+
+        .rule-card {
+            transition: all 0.3s ease;
+        }
+        .rule-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+        }
+        
+        .shake-on-hover:hover {
+            animation: shake 0.5s;
+        }
+        
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            30% { transform: translate(3px, 2px) rotate(0deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+            60% { transform: translate(-3px, 1px) rotate(0deg); }
+            70% { transform: translate(3px, 1px) rotate(-1deg); }
+            80% { transform: translate(-1px, -1px) rotate(1deg); }
+            90% { transform: translate(1px, 2px) rotate(0deg); }
+            100% { transform: translate(1px, -2px) rotate(-1deg); }
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <!-- Header Section -->
+    <header class="sticky top-0 z-50">
+        <!-- Breaking News Ticker -->
+        <div class="ticker-bg text-white py-2 overflow-hidden whitespace-nowrap border-b-2 border-yellow-400">
+            <div class="animate-marquee inline-block font-bold">
+                বিশেষ সতর্কবার্তা: সিসিটিভি ক্যামেরার সামনে পকেট থেকে টাকা বের করা দণ্ডনীয় অপরাধ, যা করার ঝোপের আড়ালে গিয়া করুন... আমাদের কোনো শাখা নাই, সাবধান! ফাইল ফেরত চাহিয়া লজ্জা দিবেন না, একবার টাকা দিলে সেটি এখন আমাদের আমানত...
+            </div>
+        </div>
+
+        <!-- Navigation Bar -->
+        <nav class="bg-white shadow-md border-b-4 border-green-700">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row justify-between items-center py-4 md:h-20">
+                    <a href="index.html" class="flex items-center justify-between w-full md:w-auto">
+                        <span class="text-2xl font-black text-green-800 tracking-tighter">DALAL<span class="text-red-600">SONGHO</span></span>
+                        <div class="md:hidden text-2xl" onclick="toggleMobileMenu()">
+                            <i class="fa-solid fa-bars"></i>
+                        </div>
+                    </a>
+                    
+                    <div id="nav-menu" class="hidden md:flex flex-wrap items-center justify-center space-x-2 md:space-x-6 font-bold text-xs md:text-sm mt-4 md:mt-0">
+                        <a href="index.html" class="nav-link px-2 py-1">মূলপাতা</a>
+                        <a href="about.html" class="nav-link px-2 py-1">আমাদের লক্ষ্য</a>
+                        <a href="niyom.html" class="nav-link px-2 py-1 active">নিয়মাবলী</a>
+                        <a href="return.html" class="nav-link px-2 py-1">ফেরত নীতি</a>
+                        <a href="contact.html" class="nav-link px-2 py-1">যোগাযোগ</a>
+                        <button onclick="alert('আগে ফি দিন, তারপর হেল্প পাবেন!')" class="bg-red-600 text-white px-4 py-2 rounded-full hover:bg-red-700 shadow-lg animate-pulse ml-2">জরুরি দালালি</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-rules text-white py-24 text-center relative overflow-hidden">
+            <div class="absolute inset-0 opacity-5">
+                <i class="fa-solid fa-gavel text-[300px] absolute -top-10 -right-20 rotate-12"></i>
+            </div>
+            <div class="max-w-7xl mx-auto px-4 relative z-10">
+                <h1 class="text-5xl md:text-7xl font-black mb-6 uppercase tracking-tighter">দালাল সংঘের <span class="text-red-500">সংবিধান</span></h1>
+                <p class="text-xl md:text-2xl font-bold text-slate-400">নিয়ম মেনে বাটপারি সহ্য করা আমাদের নৈতিক দায়িত্ব।</p>
+            </div>
+        </section>
+
+        <!-- The Rules Section -->
+        <section class="py-24 bg-slate-100">
+            <div class="max-w-5xl mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-black text-slate-900 mb-4">ক্লায়েন্টদের জন্য অবশ্যপালনীয় ১০ আজ্ঞা</h2>
+                    <p class="text-slate-500 font-bold">লঙ্ঘন করিলে ফাইলের মেয়াদ অনন্তকাল পর্যন্ত বাড়িয়া যাইবে।</p>
+                </div>
+
+                <div class="space-y-8">
+                    <!-- Rule 1 -->
+                    <div class="bg-white p-8 rounded-3xl shadow-sm border-l-[15px] border-red-600 rule-card flex gap-6 items-start shake-on-hover">
+                        <div class="bg-red-600 text-white w-16 h-16 rounded-2xl flex items-center justify-center text-3xl font-black shrink-0">০১</div>
+                        <div>
+                            <h3 class="text-2xl font-black mb-2 text-slate-900">হাসিমুখে টাকা প্রদান</h3>
+                            <p class="text-lg font-medium text-slate-600">টাকা দেওয়ার সময় মুখ গম্ভীর রাখা যাবে না। মনে করবেন আপনি গরিবকে দান করছেন। কাঁদো কাঁদো চেহারা করলে অতিরিক্ত ২০০ টাকা "মনোরঞ্জন ফি" দিতে হবে।</p>
+                        </div>
+                    </div>
+
+                    <!-- Rule 2 -->
+                    <div class="bg-white p-8 rounded-3xl shadow-sm border-l-[15px] border-yellow-500 rule-card flex gap-6 items-start shake-on-hover">
+                        <div class="bg-yellow-500 text-black w-16 h-16 rounded-2xl flex items-center justify-center text-3xl font-black shrink-0">০২</div>
+                        <div>
+                            <h3 class="text-2xl font-black mb-2 text-slate-900">অফিস পেরিমিটার এথিক্স</h3>
+                            <p class="text-lg font-medium text-slate-600">পাসপোর্ট অফিসের ১০০ গজের ভিতর আমাদের দিকে তাকানো বা হাত নাড়ানো যাবে না। যদি আমাদের সাথে কথা বলতেই হয়, তবে এমনভাবে বলবেন যেন আমরা আপনার বহু বছরের শত্রু।</p>
+                        </div>
+                    </div>
+
+                    <!-- Rule 3 -->
+                    <div class="bg-white p-8 rounded-3xl shadow-sm border-l-[15px] border-blue-600 rule-card flex gap-6 items-start shake-on-hover">
+                        <div class="bg-blue-600 text-white w-16 h-16 rounded-2xl flex items-center justify-center text-3xl font-black shrink-0">০৩</div>
+                        <div>
+                            <h3 class="text-2xl font-black mb-2 text-slate-900">পুলিশ ও ডিবি অ্যালার্ট</h3>
+                            <p class="text-lg font-medium text-slate-600">অফিসের এলাকায় পুলিশ বা ডিবি দেখলে নিজ দায়িত্বে গা ঢাকা দিতে হবে। ধরা খেলে আমাদের চিনি না—এই মর্মে হলফনামা দিতে হবে। পুলিশ রিমান্ডে নিলেও আমাদের নাম মুখে আনা পাপ।</p>
+                        </div>
+                    </div>
+
+                    <!-- Rule 4 -->
+                    <div class="bg-white p-8 rounded-3xl shadow-sm border-l-[15px] border-green-600 rule-card flex gap-6 items-start shake-on-hover">
+                        <div class="bg-blue-600 text-white w-16 h-16 rounded-2xl flex items-center justify-center text-3xl font-black shrink-0 bg-green-600">০৪</div>
+                        <div>
+                            <h3 class="text-2xl font-black mb-2 text-slate-900">বিরিয়ানি প্রটোকল</h3>
+                            <p class="text-lg font-medium text-slate-600">আমাদের সাথে চায়ের দোকানে বসার সময় 'কাচ্চি' বা 'তেহারি'র প্যাকেট সাথে আনলে ফাইলটি বিশেষ কোটায় (The VIP Bribery Quota) স্থান পাবে।</p>
+                        </div>
+                    </div>
+
+                    <!-- Rule 5 -->
+                    <div class="bg-white p-8 rounded-3xl shadow-sm border-l-[15px] border-purple-600 rule-card flex gap-6 items-start shake-on-hover">
+                        <div class="bg-purple-600 text-white w-16 h-16 rounded-2xl flex items-center justify-center text-3xl font-black shrink-0">০৫</div>
+                        <div>
+                            <h3 class="text-2xl font-black mb-2 text-slate-900">সোশ্যাল মিডিয়া নিষিদ্ধ</h3>
+                            <p class="text-lg font-medium text-slate-600">আমাদের সাথে লেনদেন করার সময় ভুলেও ফেসবুকে 'Feeling Excited with Local Brothers' লিখে চেক-ইন দেওয়া যাবে না। ধরা পড়লে ফাইলটি সরাসরি রিসাইকেল বিন-এ যাবে।</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Section: Secret Signals -->
+        <section class="py-24 bg-white overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="bg-slate-900 text-white rounded-[60px] p-12 md:p-20 relative shadow-2xl">
+                    <div class="absolute -top-10 -left-10 bg-yellow-500 text-black px-8 py-2 font-black rotate-[-10deg] shadow-lg">গোপন সংকেত</div>
+                    <h2 class="text-4xl md:text-5xl font-black mb-12 text-center text-yellow-400">দালালদের সাথে যোগাযোগের গোপন ইশারা</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <div class="text-center p-6 bg-white/5 rounded-3xl border border-white/10">
+                            <i class="fa-solid fa-eye text-4xl mb-4 text-blue-400"></i>
+                            <h4 class="font-black mb-2">বাঁ চোখ টেপা</h4>
+                            <p class="text-sm text-slate-400">"আপনার ফাইলটি দেখা হচ্ছে, টাকা নিয়ে রেডী থাকেন।"</p>
+                        </div>
+                        <div class="text-center p-6 bg-white/5 rounded-3xl border border-white/10">
+                            <i class="fa-solid fa-hand-holding-heart text-4xl mb-4 text-red-400"></i>
+                            <h4 class="font-black mb-2">মাথা চুলকানো</h4>
+                            <p class="text-sm text-slate-400">"টাকা যা দিয়েছেন তা দিয়ে শুধু চা হবে, বিরিয়ানির জন্য আরও লাগবে।"</p>
+                        </div>
+                        <div class="text-center p-6 bg-white/5 rounded-3xl border border-white/10">
+                            <i class="fa-solid fa-person-running text-4xl mb-4 text-green-400"></i>
+                            <h4 class="font-black mb-2">দ্রুত হাঁটা</h4>
+                            <p class="text-sm text-slate-400">"পিছনে পুলিশ আসছে, আপনি দ্রুত সরে যান।"</p>
+                        </div>
+                        <div class="text-center p-6 bg-white/5 rounded-3xl border border-white/10">
+                            <i class="fa-solid fa-phone-volume text-4xl mb-4 text-yellow-400"></i>
+                            <h4 class="font-black mb-2">কানে হাত রাখা</h4>
+                            <p class="text-sm text-slate-400">"বিকাশ চেক করছি, সফল হলে ফাইল ছাড়বো।"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Section: Dress Code -->
+        <section class="py-24 bg-slate-50">
+            <div class="max-w-7xl mx-auto px-4 text-center">
+                <h2 class="text-4xl font-black mb-16 underline decoration-red-600 underline-offset-8 uppercase">ক্লায়েন্ট ড্রেস কোড</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+                    <div class="bg-green-50 p-10 rounded-[40px] border-4 border-green-200">
+                        <i class="fa-solid fa-shirt text-6xl text-green-600 mb-6"></i>
+                        <h3 class="text-2xl font-black mb-4">কি পরবেন?</h3>
+                        <p class="font-bold text-slate-600 leading-relaxed">যতটা সম্ভব পুরনো এবং ছেঁড়া কাপড় পরুন। যেন দেখে মনে হয় আপনি খুব গরিব। তাহলে দালালি ফি ৫০০০-এর জায়গায় আমরা হয়তো ৪৭৫০ টাকা নিলেও নিতে পারি।</p>
+                    </div>
+                    <div class="bg-red-50 p-10 rounded-[40px] border-4 border-red-200">
+                        <i class="fa-solid fa-gem text-6xl text-red-600 mb-6"></i>
+                        <h3 class="text-2xl font-black mb-4">কি পরবেন না?</h3>
+                        <p class="font-bold text-slate-600 leading-relaxed">স্যুট-বুট, দামি ঘড়ি বা আইফোন নিয়ে আমাদের সাথে দেখা করতে আসবেন না। এসব দেখলে আমাদের ক্ষুধা বেড়ে যায় এবং ফি সরাসরি ডাবল হয়ে যায়।</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Penalty Section -->
+        <section class="py-24 bg-white border-y-8 border-yellow-500">
+            <div class="max-w-7xl mx-auto px-4 text-center">
+                <h2 class="text-5xl font-black mb-12 uppercase tracking-tighter">জরিমানা ও দণ্ডবিধি (The Penal Code)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="p-8 bg-red-50 rounded-3xl border-2 border-red-200 hover:bg-red-100 transition">
+                        <i class="fa-solid fa-clock text-4xl text-red-600 mb-4"></i>
+                        <h4 class="text-xl font-black mb-2 text-red-900">দেরি করলে</h4>
+                        <p class="font-bold text-slate-500 italic">টাকা দিতে ৫ মিনিট দেরি করলে ফাইলে অতিরিক্ত ১০টি ভুল নিজ দায়িত্বে এড করা হবে এবং ডেলিভারি ডেট ১ বছর পেছানো হবে।</p>
+                    </div>
+                    <div class="p-8 bg-red-50 rounded-3xl border-2 border-red-200 hover:bg-red-100 transition">
+                        <i class="fa-solid fa-phone-slash text-4xl text-red-600 mb-4"></i>
+                        <h4 class="text-xl font-black mb-2 text-red-900">অতিরিক্ত ফোন দিলে</h4>
+                        <p class="font-bold text-slate-500 italic">ফাইল স্ট্যাটাস জানতে দিনে ৫ বারের বেশি ফোন দিলে আপনার নম্বর ব্ল্যাকলিস্টে যাবে এবং আমাদের সাথে পরিচয় অস্বীকার করা হবে।</p>
+                    </div>
+                    <div class="p-8 bg-red-50 rounded-3xl border-2 border-red-200 hover:bg-red-100 transition">
+                        <i class="fa-solid fa-handshake-slash text-4xl text-red-600 mb-4"></i>
+                        <h4 class="text-xl font-black mb-2 text-red-900">বারগেইনিং করলে</h4>
+                        <p class="font-bold text-slate-500 italic">দালালি ফি নিয়ে দামাদামি করলে সরাসরি পুলিশের হাতে তুলে দেওয়ার হুমকি দেওয়া হবে (যদিও তারা আমাদের আপন ভাই)।</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fun Note Section -->
+        <section class="py-24 bg-slate-900 text-white text-center relative overflow-hidden">
+             <div class="absolute top-0 right-0 w-64 h-64 bg-yellow-500 opacity-5 rounded-full -mr-32 -mt-32"></div>
+            <div class="max-w-4xl mx-auto px-4 relative z-10">
+                <div class="inline-block p-4 bg-yellow-500 text-black font-black rounded-lg mb-8 rotate-3 shadow-xl">
+                    বিশেষ দ্রষ্টব্য (Warning)
+                </div>
+                <h2 class="text-4xl font-black italic mb-8 leading-tight">
+                    "আমরা নিয়মের বাইরে এক পা-ও নড়ি না (যদি না পকেটে কড়কড়ে নোট বেশি আসে)। বাটপারি করা আমাদের পেশা নয়, এটি আমাদের একটি ঐতিহ্য।"
+                </h2>
+                <p class="text-slate-400 font-bold tracking-widest uppercase text-xs">— দালালি রত্ন, সভাপতি, দালাল সংঘ</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black text-slate-600 py-20 border-t-8 border-red-600 text-center">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-4xl font-black text-white mb-8 uppercase tracking-[15px]">দালাল সংঘ <span class="text-red-600">মানিকগঞ্জ</span></h2>
+            <div class="flex justify-center space-x-12 mb-16">
+                <a href="#" class="text-slate-400 hover:text-yellow-400 transition transform hover:scale-150"><i class="fa-brands fa-facebook-f text-4xl"></i></a>
+                <a href="#" class="text-slate-400 hover:text-green-400 transition transform hover:scale-150"><i class="fa-brands fa-whatsapp text-4xl"></i></a>
+            </div>
+            <p class="text-[12px] uppercase tracking-[12px] font-bold">&copy; ২০২৫ সকল দালালি সংরক্ষিত। লাইসেন্স নং: ৪২০/ঘুষ-শাখা।</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('nav-menu');
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('flex');
+        }
+    </script>
+</body>
+</html>
