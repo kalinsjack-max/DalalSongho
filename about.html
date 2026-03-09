@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>আমাদের লক্ষ্য - দালাল সংঘ, মানিকগঞ্জ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Updated Font Awesome to 6.5.2 to ensure icons work correctly -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: #f8fafc;
+            scroll-behavior: smooth;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #064e3b 0%, #000000 100%);
+        }
+
+        .ticker-bg {
+            background: #be123c;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        .animate-marquee {
+            animation: marquee 25s linear infinite;
+        }
+
+        .nav-link {
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: #15803d;
+        }
+
+        .nav-link.active {
+            color: #15803d;
+        }
+        
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #15803d;
+        }
+
+        .mission-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .mission-card:hover {
+            transform: translateY(-10px) rotate(1deg);
+        }
+
+        .stat-card:hover i {
+            animation: bounce 0.5s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <!-- Header Section -->
+    <header class="sticky top-0 z-50">
+        <!-- Breaking News Ticker -->
+        <div class="ticker-bg text-white py-2 overflow-hidden whitespace-nowrap border-b-2 border-yellow-400">
+            <div class="animate-marquee inline-block font-bold">
+                জরুরি ঘোষণা: যে সকল ক্লায়েন্ট আমাদের 'চা-নাস্তা' বাবদ অতিরিক্ত ৫০০০ টাকা দিবেন, তাদের ফাইল রকেটের গতিতে (বিনা তদন্তে) পাস করা হইবে... সভাপতির পক্ষ হইতে ফ্রি পরামর্শ: পকেটে টাকা না থাকিলে অফিসে আসিবার প্রয়োজন নাই... 
+            </div>
+        </div>
+
+        <!-- Navigation Bar -->
+        <nav class="bg-white shadow-md border-b-4 border-green-700">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row justify-between items-center py-4 md:h-20">
+                    <div class="flex items-center justify-between w-full md:w-auto">
+                        <a href="index.html" class="flex items-center">
+                            <!-- Passport Icon Added in Header -->
+                            <i class="fa-solid fa-passport text-3xl text-green-800 mr-2"></i>
+                            <span class="text-2xl font-black text-green-800 tracking-tighter">দালাল <span class="text-red-600">সংঘ</span></span>
+                        </a>
+                        <!-- Fixed Mobile Menu Toggle -->
+                        <div class="md:hidden text-2xl cursor-pointer p-2" onclick="toggleMobileMenu()">
+                            <i class="fa-solid fa-bars"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Fixed Nav Menu Classes for mobile stability -->
+                    <div id="nav-menu" class="hidden md:flex flex-col md:flex-row items-center justify-center w-full md:w-auto space-y-4 md:space-y-0 md:space-x-6 font-bold text-sm mt-4 md:mt-0 pb-4 md:pb-0">
+                        <a href="index.html" class="nav-link px-2 py-1">মূলপাতা</a>
+                        <a href="about.html" class="nav-link px-2 py-1 active">আমাদের লক্ষ্য</a>
+                        <a href="niyom.html" class="nav-link px-2 py-1">নিয়মাবলী</a>
+                        <a href="return.html" class="nav-link px-2 py-1">ফেরত নীতি</a>
+                        <a href="contact.html" class="nav-link px-2 py-1">যোগাযোগ</a>
+                        <a href="joruri.html" class="bg-red-600 text-white px-6 py-2 rounded-full hover:bg-red-700 shadow-lg animate-pulse text-center">জরুরি দালালি</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-gradient text-white py-24 relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10">
+                <i class="fa-solid fa-sack-dollar text-[20rem] absolute -top-20 -left-20 rotate-12"></i>
+                <i class="fa-solid fa-hand-holding-dollar text-[15rem] absolute bottom-0 right-0 -rotate-12"></i>
+            </div>
+            <div class="max-w-7xl mx-auto px-4 text-center relative z-10">
+                <h1 class="text-6xl md:text-8xl font-black mb-6 italic">আমাদের <span class="text-yellow-400">মহৎ</span> লক্ষ্য</h1>
+                <p class="text-2xl md:text-3xl font-bold text-slate-300 max-w-3xl mx-auto leading-relaxed">
+                    আপনার কষ্টার্জিত টাকাকে আমাদের ব্যাংক অ্যাকাউন্টে স্থানান্তরিত করাই আমাদের একমাত্র সাধনা।
+                </p>
+            </div>
+        </section>
+
+        <!-- Mission/Vision Grid -->
+        <section class="py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-8">
+                        <div class="bg-slate-50 p-10 rounded-[40px] border-r-[12px] border-green-600 shadow-xl mission-card">
+                            <h2 class="text-4xl font-black text-green-800 mb-4 uppercase">ভিশন ২০৩০</h2>
+                            <p class="text-xl font-bold text-slate-600 leading-relaxed">
+                                ২০৩০ সালের মধ্যে মানিকগঞ্জের প্রতিটি পরিবারের অন্তত একজনের পকেট সফলভাবে পরিষ্কার করা এবং পাসপোর্ট অফিসে দালালের সংখ্যা পাসপোর্ট প্রত্যাশীদের সংখ্যার চেয়ে বেশি করা।
+                            </p>
+                        </div>
+                        <div class="bg-yellow-50 p-10 rounded-[40px] border-l-[12px] border-yellow-500 shadow-xl mission-card">
+                            <h2 class="text-4xl font-black text-yellow-700 mb-4 uppercase">মিশন স্টেটমেন্ট</h2>
+                            <p class="text-xl font-bold text-slate-600 leading-relaxed">
+                                "লাইনে দাঁড়ানো অভিশাপ, দালালিই আর্শীবাদ"—এই মন্ত্রে উজ্জীবিত হয়ে সাধারণ মানুষের পকেট থেকে টাকা বের করে আনা এবং সেই টাকা দিয়ে সভাপতি সাহেবের জন্য একটি প্রাইভেট জেট কেনা।
+                            </p>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <img src="https://images.prothomalo.com/prothomalo-bangla%2F2023-04%2F301f22e8-c576-47a2-9721-3965a396431f%2F1766599160.jpg" class="rounded-[60px] shadow-2xl grayscale hover:grayscale-0 transition duration-700">
+                        <div class="absolute -bottom-6 -right-6 bg-red-600 text-white p-8 rounded-3xl font-black text-2xl shadow-2xl rotate-3">
+                            ৯৯% সফলতা <br> (বাকি ১% পুলিশের ভয়ে)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Strategy Section -->
+        <section class="py-24 bg-slate-50 border-y-4 border-dashed border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 text-center">
+                <h2 class="text-5xl font-black mb-16 text-slate-900">ফাইল আটকানোর বৈজ্ঞানিক পদ্ধতি</h2>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 relative">
+                    <div class="p-6 bg-white rounded-2xl shadow-md border-b-4 border-red-500">
+                        <div class="text-4xl mb-4 font-black text-red-100">01</div>
+                        <h4 class="text-xl font-bold mb-2">ভুল খোঁজা</h4>
+                        <p class="text-sm text-slate-500 font-bold">আপনার নামের বানান ঠিক থাকলেও আমরা সেখানে ভুল খুঁজে বের করি।</p>
+                    </div>
+                    <div class="p-6 bg-white rounded-2xl shadow-md border-b-4 border-yellow-500">
+                        <div class="text-4xl mb-4 font-black text-yellow-100">02</div>
+                        <h4 class="text-xl font-bold mb-2">ফাইল লুকানো</h4>
+                        <p class="text-sm text-slate-500 font-bold">অফিসের সবচেয়ে অন্ধকার ড্রয়ারে আপনার ফাইলটি সযত্নে লুকিয়ে রাখা হয়।</p>
+                    </div>
+                    <div class="p-6 bg-white rounded-2xl shadow-md border-b-4 border-blue-500">
+                        <div class="text-4xl mb-4 font-black text-blue-100">03</div>
+                        <h4 class="text-xl font-bold mb-2">চা-পানি বিরতি</h4>
+                        <p class="text-sm text-slate-500 font-bold">টাকা না আসা পর্যন্ত আমাদের দালালদের অনন্তকাল 'চা বিরতি' চলে।</p>
+                    </div>
+                    <div class="p-6 bg-white rounded-2xl shadow-md border-b-4 border-green-500">
+                        <div class="text-4xl mb-4 font-black text-green-100">04</div>
+                        <h4 class="text-xl font-bold mb-2">টাকা ও মুক্তি</h4>
+                        <p class="text-sm text-slate-500 font-bold">বিকাশে পেমেন্ট পাওয়ার ৫ মিনিটের মধ্যে ফাইল অলৌকিকভাবে পাওয়া যায়।</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Counter -->
+        <section class="py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                    <div class="text-center stat-card">
+                        <i class="fa-solid fa-mug-hot text-5xl text-yellow-600 mb-4"></i>
+                        <h3 class="text-4xl font-black text-slate-900">১৫,০০০+</h3>
+                        <p class="font-bold text-slate-400 uppercase text-xs tracking-widest">কাপ চা সাবাড়</p>
+                    </div>
+                    <div class="text-center stat-card">
+                        <i class="fa-solid fa-file-excel text-5xl text-red-600 mb-4"></i>
+                        <h3 class="text-4xl font-black text-slate-900">২,৮০০+</h3>
+                        <p class="font-bold text-slate-400 uppercase text-xs tracking-widest">ফাইল গায়েব</p>
+                    </div>
+                    <div class="text-center stat-card">
+                        <i class="fa-solid fa-face-angry text-5xl text-orange-600 mb-4"></i>
+                        <h3 class="text-4xl font-black text-slate-900">১০,০০০+</h3>
+                        <p class="font-bold text-slate-400 uppercase text-xs tracking-widest">কাস্টমারের গালি</p>
+                    </div>
+                    <div class="text-center stat-card">
+                        <i class="fa-solid fa-vault text-5xl text-green-600 mb-4"></i>
+                        <h3 class="text-4xl font-black text-slate-900">৳ ৫ কোটি+</h3>
+                        <p class="font-bold text-slate-400 uppercase text-xs tracking-widest">অবৈধ বিরিয়ানি ফান্ড</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Values -->
+        <section class="py-24 bg-slate-900 text-white">
+            <div class="max-w-7xl mx-auto px-4">
+                <h2 class="text-5xl font-black text-center mb-20 text-yellow-400 underline decoration-red-600 underline-offset-8">আমাদের মূল মূল্যবোধ (Core Values)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                    <div class="text-center p-8 border-2 border-white/10 rounded-3xl hover:border-yellow-500 transition group">
+                        <div class="w-24 h-24 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition">
+                            <i class="fa-solid fa-face-grin-tongue-wink text-4xl text-black"></i>
+                        </div>
+                        <h3 class="text-2xl font-black mb-4">চরম মিথ্যাচার</h3>
+                        <p class="font-medium text-slate-400">আমরা যা বলি তার ১% সত্য হলে সভাপতির দাড়ি কেটে ফেলা হবে। প্রতিটি ওয়াদা একটি শিল্প।</p>
+                    </div>
+                    <div class="text-center p-8 border-2 border-white/10 rounded-3xl hover:border-green-500 transition group">
+                        <div class="w-24 h-24 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition">
+                            <i class="fa-solid fa-ghost text-4xl text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-black mb-4">অদৃশ্য সার্ভিস</h3>
+                        <p class="font-medium text-slate-400">টাকা নেয়ার পর আমরা এমনভাবে হাওয়া হয়ে যাই যে, জিন-পরিও আমাদের খুঁজে পায় না।</p>
+                    </div>
+                    <div class="text-center p-8 border-2 border-white/10 rounded-3xl hover:border-red-500 transition group">
+                        <div class="w-24 h-24 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition">
+                            <i class="fa-solid fa-hand-fist text-4xl text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-black mb-4">সিন্ডিকেট শক্তি</h3>
+                        <p class="font-medium text-slate-400">আমরা একা নই, আমাদের সিন্ডিকেট পাসপোর্ট অফিসের প্রতিটি ধূলিকণার সাথে সম্পৃক্ত।</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Awards Section -->
+        <section class="py-24 bg-white overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4">
+                <h2 class="text-4xl font-black text-center mb-16">আমাদের অসামান্য স্বীকৃতি</h2>
+                <div class="flex flex-wrap justify-center gap-8">
+                    <div class="bg-slate-50 p-6 rounded-2xl flex items-center space-x-4 border-2 border-slate-100">
+                        <i class="fa-solid fa-trophy text-3xl text-yellow-500"></i>
+                        <div>
+                            <h5 class="font-black text-slate-900">সেরা পকেট কাটার অ্যাওয়ার্ড</h5>
+                            <p class="text-xs font-bold text-slate-500 italic">বিশ্ব বাটপার ফাউন্ডেশন (২০২৪)</p>
+                        </div>
+                    </div>
+                    <div class="bg-slate-50 p-6 rounded-2xl flex items-center space-x-4 border-2 border-slate-100">
+                        <i class="fa-solid fa-certificate text-3xl text-green-500"></i>
+                        <div>
+                            <h5 class="font-black text-slate-900">ISO ৯০০১: দুর্নীতি সার্টিফাইড</h5>
+                            <p class="text-xs font-bold text-slate-500 italic">আন্ডারগ্রাউন্ড সিন্ডিকেট বোর্ড</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sarcastic Quote -->
+        <section class="py-32 bg-yellow-400">
+            <div class="max-w-5xl mx-auto px-4 text-center">
+                <i class="fa-solid fa-quote-left text-8xl text-black/20 mb-8"></i>
+                <h2 class="text-4xl md:text-6xl font-black text-slate-900 italic leading-tight">
+                    "আপনি পাসপোর্ট নিয়ে বিদেশ যাওয়ার স্বপ্ন দেখেন, আর আমরা সেই স্বপ্ন থেকে টাকা চুরি করার স্বপ্ন দেখি।"
+                </h2>
+                <p class="mt-8 text-xl font-bold uppercase tracking-[10px] text-red-700">— উপদেষ্টা, দালাল সংঘ</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black text-slate-600 py-20 border-t-8 border-red-600 text-center">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-4xl font-black text-white mb-8 uppercase tracking-[15px]">দালাল সংঘ <span class="text-red-600">মানিকগঞ্জ</span></h2>
+            <div class="flex justify-center space-x-12 mb-16">
+                <a href="#" class="text-slate-400 hover:text-yellow-400 transition transform hover:scale-150"><i class="fa-brands fa-facebook-f text-4xl"></i></a>
+                <a href="#" class="text-slate-400 hover:text-green-400 transition transform hover:scale-150"><i class="fa-brands fa-whatsapp text-4xl"></i></a>
+            </div>
+            <p class="text-[12px] uppercase tracking-[12px] font-bold">&copy; ২০২৫ সকল দালালি সংরক্ষিত। লাইসেন্স নং: ৪২০/ঘুষ-শাখা।</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('nav-menu');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                menu.classList.add('flex');
+            } else {
+                menu.classList.add('hidden');
+                menu.classList.remove('flex');
+            }
+        }
+    </script>
+</body>
+</html>
