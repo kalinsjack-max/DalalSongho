@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অভিযোগ কেন্দ্র - দালাল সংঘ, মানিকগঞ্জ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Updated Font Awesome to 6.5.2 to ensure icons work correctly -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: #f8fafc;
+            scroll-behavior: smooth;
+        }
+
+        .ticker-bg {
+            background: #be123c;
+        }
+
+        .hero-complaint {
+            background: linear-gradient(135deg, #111827 0%, #4b5563 100%);
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        .animate-marquee {
+            animation: marquee 25s linear infinite;
+        }
+
+        .nav-link {
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: #15803d;
+        }
+
+        .nav-link.active {
+            color: #15803d;
+        }
+        
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #15803d;
+        }
+
+        /* Trash Animation */
+        @keyframes tossIntoTrash {
+            0% { transform: scale(1) translateY(0); opacity: 1; }
+            50% { transform: scale(0.5) translateY(-100px) rotate(45deg); opacity: 0.5; }
+            100% { transform: scale(0) translateY(200px) rotate(90deg); opacity: 0; }
+        }
+        .trash-effect {
+            animation: tossIntoTrash 1s ease-in forwards;
+        }
+
+        #ovijog-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        @keyframes popupIn {
+            from { opacity: 0; transform: scale(0.9) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .animate-popup {
+            animation: popupIn 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <!-- Custom Trash Popup -->
+    <div id="ovijog-modal">
+        <div class="bg-white p-10 rounded-[40px] max-w-lg w-full text-center shadow-2xl border-4 border-slate-900 animate-popup">
+            <div class="w-24 h-24 bg-slate-100 text-slate-800 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i class="fa-solid fa-trash-arrow-up text-4xl"></i>
+            </div>
+            <h2 class="text-3xl font-black text-slate-900 mb-4">অপারেশন সফল!</h2>
+            <p id="modal-text" class="text-xl font-bold text-slate-600 mb-8 leading-relaxed"></p>
+            <button onclick="closeModal()" class="bg-red-600 text-white px-8 py-3 rounded-full font-black hover:bg-red-700 transition uppercase">যাক বাঁচা গেল!</button>
+        </div>
+    </div>
+
+    <!-- Header Section -->
+    <header class="sticky top-0 z-50">
+        <div class="ticker-bg text-white py-2 overflow-hidden whitespace-nowrap border-b-2 border-yellow-400">
+            <div class="animate-marquee inline-block font-bold">
+                ব্রেকিং নিউজ: অভিযোগ কারীর সংখ্যা বৃদ্ধি পাওয়ায় অভিযোগ ফি ৫০০ টাকা বাড়ানো হইয়াছে... সভাপতির বিরুদ্ধে কথা বলিলে পাসপোর্টের জন্য লাইনে অনন্তকাল অপেক্ষা করিতে হইবে... আজ সকল অভিযোগ সরাসরি ডাস্টবিনে ফেলার উৎসব চলিতেছে!
+            </div>
+        </div>
+
+        <nav class="bg-white shadow-md border-b-4 border-green-700">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row justify-between items-center py-4 md:h-20">
+                    <div class="flex items-center justify-between w-full md:w-auto">
+                        <a href="index.html" class="flex items-center">
+                            <i class="fa-solid fa-passport text-3xl text-green-800 mr-2"></i>
+                            <span class="text-2xl font-black text-green-800 tracking-tighter">দালাল <span class="text-red-600">সংঘ</span></span>
+                        </a>
+                        <div class="md:hidden text-2xl cursor-pointer p-2" onclick="toggleMobileMenu()">
+                            <i class="fa-solid fa-bars"></i>
+                        </div>
+                    </div>
+                    
+                    <div id="nav-menu" class="hidden md:flex flex-col md:flex-row items-center justify-center w-full md:w-auto space-y-4 md:space-y-0 md:space-x-6 font-bold text-sm mt-4 md:mt-0 pb-4 md:pb-0">
+                        <a href="index.html" class="nav-link px-2 py-1">মূলপাতা</a>
+                        <a href="about.html" class="nav-link px-2 py-1">আমাদের লক্ষ্য</a>
+                        <a href="niyom.html" class="nav-link px-2 py-1">নিয়মাবলী</a>
+                        <a href="return.html" class="nav-link px-2 py-1">ফেরত নীতি</a>
+                        <a href="contact.html" class="nav-link px-2 py-1">যোগাযোগ</a>
+                        <!-- Removed "Ovijog" link from nav as per request -->
+                        <a href="joruri.html" class="bg-red-600 text-white px-6 py-2 rounded-full hover:bg-red-700 shadow-lg animate-pulse text-center">জরুরি দালালি</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-complaint text-white py-24 text-center relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10">
+                <i class="fa-solid fa-face-frown-open text-[300px] absolute -bottom-10 -right-20 rotate-12"></i>
+            </div>
+            <div class="max-w-7xl mx-auto px-4 relative z-10">
+                <h1 class="text-5xl md:text-8xl font-black mb-6 uppercase tracking-tighter">অভিযোগ <span class="text-yellow-400 text-4xl block md:inline md:text-6xl"> (যেখানে বিচার পাওয়া নিষেধ)</span></h1>
+                <p class="text-xl md:text-2xl font-bold text-slate-300 italic">"আপনার অভিযোগ আমাদের কাছে বিরিয়ানির প্যাকেটের মতো—একবার দেখা শেষ তো সরাসরি ডাস্টবিনে!"</p>
+            </div>
+        </section>
+
+        <!-- Sarcastic Warning Section -->
+        <section class="py-16 bg-red-50 border-y-4 border-dashed border-red-200">
+            <div class="max-w-4xl mx-auto px-4 text-center">
+                <div class="flex justify-center mb-6">
+                    <div class="w-20 h-20 bg-red-600 text-white rounded-full flex items-center justify-center animate-pulse">
+                        <i class="fa-solid fa-triangle-exclamation text-4xl"></i>
+                    </div>
+                </div>
+                <h2 class="text-3xl font-black text-red-700 mb-4">সাবধানবাণী!</h2>
+                <p class="text-lg font-bold text-slate-700">অভিযোগ করার অর্থ হলো আমাদের সাথে দালালি চুক্তির অবসান ঘটানো। অভিযোগ করলে আপনার ফাইল অলৌকিকভাবে গায়েব হয়ে যাওয়ার ১০০% গ্যারান্টি আমরা দিচ্ছি।</p>
+            </div>
+        </section>
+
+        <!-- Complaint Form -->
+        <section class="py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <!-- Text Side -->
+                    <div>
+                        <h2 class="text-4xl font-black text-slate-900 mb-8 border-b-8 border-yellow-500 inline-block">অভিযোগ জমা দিন</h2>
+                        <div class="space-y-6 text-xl font-bold text-slate-600 italic">
+                            <p class="flex items-center gap-4"><i class="fa-solid fa-circle-dot text-red-500"></i> আপনার অভিযোগটি সরাসরি সভাপতির ইমেইলে যাবে (যা তিনি গত ১০ বছর পাসওয়ার্ড ভুলে চেক করেন না)।</p>
+                            <p class="flex items-center gap-4"><i class="fa-solid fa-circle-dot text-red-500"></i> অভিযোগ করার ৫ মিনিটের মধ্যে আপনার প্রোফাইল ব্ল্যাকলিস্ট করা হবে।</p>
+                            <p class="flex items-center gap-4"><i class="fa-solid fa-circle-dot text-red-500"></i> দয়া করে গালি দেওয়ার সময় মার্জিত ভাষা ব্যবহার করবেন।</p>
+                        </div>
+                    </div>
+
+                    <!-- Form Side -->
+                    <div id="complaint-box-wrapper" class="bg-slate-900 p-10 md:p-16 rounded-[60px] shadow-2xl relative">
+                        <!-- Hidden Loading Overlay -->
+                        <div id="processing-overlay" class="hidden absolute inset-0 bg-black/95 z-50 rounded-[60px] flex items-center justify-center p-6 text-center">
+                            <div>
+                                <div id="process-status" class="text-2xl font-black text-yellow-500 mb-6 italic">আপনার অভিযোগটি ডাস্টবিনে পাঠানো হচ্ছে...</div>
+                                <div class="w-48 bg-slate-800 h-2 rounded-full mx-auto overflow-hidden">
+                                    <div id="process-progress" class="bg-red-600 h-full w-0 transition-all"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="actual-form">
+                            <div class="space-y-6">
+                                <div>
+                                    <label class="block text-slate-400 font-bold mb-2 ml-2">আপনার নাম (যার পাসপোর্ট দরকার নাই)</label>
+                                    <input type="text" id="victim-name" class="w-full p-5 rounded-2xl bg-white/5 border-2 border-white/10 text-white outline-none focus:border-green-600 transition font-bold" placeholder="উদা: অভাগা কাস্টমার">
+                                </div>
+                                <div>
+                                    <label class="block text-slate-400 font-bold mb-2 ml-2">অভিযোগের ক্যাটাগরি</label>
+                                    <select id="ovijog-type" class="w-full p-5 rounded-2xl bg-slate-800 border-2 border-white/10 text-white outline-none focus:border-red-600 font-bold">
+                                        <option value="bribe">টাকা নিয়ে পাসপোর্ট দেয় না</option>
+                                        <option value="misbehave">পিয়ন আমাকে তুই তুকারি করেছে</option>
+                                        <option value="biriyani">বিরিয়ানির প্যাকেটে মাংস কম ছিল</option>
+                                        <option value="vanish">দালাল আমাকে ব্লক করেছে</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-slate-400 font-bold mb-2 ml-2">বিস্তারিত কান্নাকাটি</label>
+                                    <textarea id="victim-msg" class="w-full p-5 h-40 rounded-2xl bg-white/5 border-2 border-white/10 text-white outline-none focus:border-red-600 transition font-bold" placeholder="এখানে আপনার দুখের কথা লিখুন..."></textarea>
+                                </div>
+                                <button onclick="submitOvijog()" class="w-full bg-red-600 text-white py-5 rounded-2xl font-black text-2xl hover:bg-red-700 transition shadow-xl uppercase tracking-tighter">অভিযোগ করুন (ডিলিট হবে)</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Homepage Link Section -->
+        <section class="py-10 text-center">
+            <a href="index.html" class="text-slate-400 hover:text-green-700 font-black transition flex items-center justify-center gap-2 group">
+                <i class="fa-solid fa-house group-hover:animate-bounce"></i> 
+                <span>মাফ করে দেন ভাই, অভিযোগ করা ভুল হয়েছে—আমি দালালি মেনে নিয়ে হোমে ফিরতে চাই</span>
+            </a>
+        </section>
+
+        <!-- Sarcastic Tracking -->
+        <section class="py-24 bg-slate-100 text-center">
+            <div class="max-w-4xl mx-auto px-4">
+                <h2 class="text-4xl font-black mb-10">অভিযোগ স্ট্যাটাস ট্র্যাকিং</h2>
+                <div class="bg-white p-12 rounded-[50px] shadow-inner">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="p-6">
+                            <div class="text-green-600 mb-2"><i class="fa-solid fa-circle-check text-4xl"></i></div>
+                            <h4 class="font-black text-slate-900">রিসিভড</h4>
+                            <p class="text-xs font-bold text-slate-400">০২ সেকেন্ড আগে</p>
+                        </div>
+                        <div class="p-6">
+                            <div class="text-yellow-600 mb-2"><i class="fa-solid fa-spinner animate-spin text-4xl"></i></div>
+                            <h4 class="font-black text-slate-900">ডিলিট হচ্ছে</h4>
+                            <p class="text-xs font-bold text-slate-400">প্রসেসিং...</p>
+                        </div>
+                        <div class="p-6 opacity-30">
+                            <div class="text-slate-300 mb-2"><i class="fa-solid fa-ban text-4xl"></i></div>
+                            <h4 class="font-black text-slate-900">বিচার পাওয়া</h4>
+                            <p class="text-xs font-bold text-slate-400">কখনো সম্ভব নয়</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black text-slate-600 py-20 border-t-8 border-red-600 text-center">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-4xl font-black text-white mb-8 uppercase tracking-[15px]">দালাল সংঘ <span class="text-red-600">মানিকগঞ্জ</span></h2>
+            <div class="flex justify-center space-x-12 mb-16">
+                <a href="#" class="text-slate-400 hover:text-yellow-400 transition transform hover:scale-150"><i class="fa-brands fa-facebook-f text-4xl"></i></a>
+                <a href="#" class="text-slate-400 hover:text-green-400 transition transform hover:scale-150"><i class="fa-brands fa-whatsapp text-4xl"></i></a>
+            </div>
+            <p class="text-[12px] uppercase tracking-[12px] font-bold">&copy; ২০২৫ সকল দালালি সংরক্ষিত। লাইসেন্স নং: ৪২০/ঘুষ-শাখা।</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('nav-menu');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                menu.classList.add('flex');
+            } else {
+                menu.classList.add('hidden');
+                menu.classList.remove('flex');
+            }
+        }
+
+        function showCustomMessage(text) {
+            const modal = document.getElementById('ovijog-modal');
+            const modalText = document.getElementById('modal-text');
+            modalText.innerText = text;
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('ovijog-modal').style.display = 'none';
+        }
+
+        function submitOvijog() {
+            const name = document.getElementById('victim-name').value;
+            const msg = document.getElementById('victim-msg').value;
+
+            if(!name || !msg) {
+                // For sarcasm consistency, using modal instead of basic alert
+                showCustomMessage("সব ঘর পূরণ করুন! ফাঁকি দেওয়া দালালের কাজ, কাস্টমারের নয়।");
+                return;
+            }
+
+            const formWrapper = document.getElementById('actual-form');
+            const overlay = document.getElementById('processing-overlay');
+            const progress = document.getElementById('process-progress');
+            const status = document.getElementById('process-status');
+
+            overlay.classList.remove('hidden');
+            formWrapper.classList.add('trash-effect');
+
+            let p = 0;
+            const interval = setInterval(() => {
+                p += 5;
+                progress.style.width = p + '%';
+
+                if(p === 30) status.innerText = "সভাপতি সাহেব আপনার অভিযোগ দেখে হাসছেন...";
+                if(p === 60) status.innerText = "আপনার ফাইল ডাস্টবিনে ফেলার জন্য কনফার্ম করা হচ্ছে...";
+                if(p === 90) status.innerText = "ধন্যবাদ! আপনার অভিযোগটি চিরতরে ডিলিট করা হয়েছে।";
+
+                if(p >= 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        overlay.classList.add('hidden');
+                        formWrapper.classList.remove('trash-effect');
+                        showCustomMessage(`মিস্টার ${name}, আপনার বিশাল অভিযোগটি আমরা মনোযোগ দিয়ে 'না পড়েই' রিসাইকেল বিনে ট্রান্সফার করেছি। আপনি কীভাবে ভাবলেন অভিযোগ করে বিচার পাবেন? এই পেজে আপনিই শেষ ভিজিটর যে অভিযোগ করার দুঃসাহস দেখিয়েছেন। এখন ভালো ছেলের মতো এই পেজ থেকে বিদায় নিন, নাহলে সভাপতির চ্যালা আপনার আইপি এড্রেস ট্র্যাক করে বাসায় বিরিয়ানির বিল পাঠাবে!`);
+                        
+                        // Clear inputs
+                        document.getElementById('victim-name').value = "";
+                        document.getElementById('victim-msg').value = "";
+                        progress.style.width = '0%';
+                        status.innerText = "আপনার অভিযোগটি ডাস্টবিনে পাঠানো হচ্ছে...";
+                    }, 500);
+                }
+            }, 100);
+        }
+    </script>
+</body>
+</html>
