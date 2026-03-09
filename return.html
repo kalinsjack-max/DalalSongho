@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ফেরত নীতি - দালাল সংঘ, মানিকগঞ্জ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Updated Font Awesome to 6.5.2 to ensure icons work correctly -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: #f8fafc;
+            scroll-behavior: smooth;
+        }
+
+        .ticker-bg {
+            background: #be123c;
+        }
+
+        .hero-return {
+            background: linear-gradient(135deg, #1e1b4b 0%, #000000 100%);
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        .animate-marquee {
+            animation: marquee 25s linear infinite;
+        }
+
+        .nav-link {
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: #15803d;
+        }
+
+        .nav-link.active {
+            color: #15803d;
+        }
+        
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #15803d;
+        }
+
+        .refund-clause {
+            transition: all 0.3s ease;
+        }
+        .refund-clause:hover {
+            transform: translateY(-5px);
+            background-color: #fff1f2;
+        }
+
+        /* Custom Modal Style */
+        #custom-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* Smooth Popup Animation */
+        @keyframes popupIn {
+            from { opacity: 0; transform: scale(0.9) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .animate-popup {
+            animation: popupIn 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <!-- Custom Funny Popup -->
+    <div id="custom-modal">
+        <div class="bg-white p-8 rounded-[40px] max-w-lg w-full text-center shadow-2xl border-4 border-red-600 animate-popup">
+            <div class="w-20 h-20 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i class="fa-solid fa-trash-can text-4xl"></i>
+            </div>
+            <h2 class="text-3xl font-black text-slate-900 mb-4">অভিনন্দন! (বাটপারি স্টাইলে)</h2>
+            <p id="modal-text" class="text-xl font-bold text-slate-600 mb-8 leading-relaxed"></p>
+            <button onclick="closeModal()" class="bg-slate-900 text-white px-8 py-3 rounded-full font-black hover:bg-slate-800 transition">ঠিক আছে, আমি লজ্জিত</button>
+        </div>
+    </div>
+
+    <!-- Header Section -->
+    <header class="sticky top-0 z-50">
+        <!-- Breaking News Ticker -->
+        <div class="ticker-bg text-white py-2 overflow-hidden whitespace-nowrap border-b-2 border-yellow-400">
+            <div class="animate-marquee inline-block font-bold">
+                জরুরি বিজ্ঞপ্তি: টাকা ফেরত চাহিলে সরাসরি ব্লক করা হইবে... একবার টাকা পকেটে ঢুকিলে সেটি এখন আমাদের সম্পদ... বিরিয়ানির চাল কেনা হইয়া গিয়াছে, ফেরত অসম্ভব!
+            </div>
+        </div>
+
+        <!-- Navigation Bar -->
+        <nav class="bg-white shadow-md border-b-4 border-green-700">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row justify-between items-center py-4 md:h-20">
+                    <div class="flex items-center justify-between w-full md:w-auto">
+                        <a href="index.html" class="flex items-center">
+                            <!-- Passport Icon Added in Header -->
+                            <i class="fa-solid fa-passport text-3xl text-green-800 mr-2"></i>
+                            <span class="text-2xl font-black text-green-800 tracking-tighter">দালাল <span class="text-red-600">সংঘ</span></span>
+                        </a>
+                        <!-- Fixed Mobile Menu Toggle -->
+                        <div class="md:hidden text-2xl cursor-pointer p-2" onclick="toggleMobileMenu()">
+                            <i class="fa-solid fa-bars"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Fixed Nav Menu Classes for mobile stability -->
+                    <div id="nav-menu" class="hidden md:flex flex-col md:flex-row items-center justify-center w-full md:w-auto space-y-4 md:space-y-0 md:space-x-6 font-bold text-sm mt-4 md:mt-0 pb-4 md:pb-0">
+                        <a href="index.html" class="nav-link px-2 py-1">মূলপাতা</a>
+                        <a href="about.html" class="nav-link px-2 py-1">আমাদের লক্ষ্য</a>
+                        <a href="niyom.html" class="nav-link px-2 py-1">নিয়মাবলী</a>
+                        <a href="return.html" class="nav-link px-2 py-1 active">ফেরত নীতি</a>
+                        <a href="contact.html" class="nav-link px-2 py-1">যোগাযোগ</a>
+                        <a href="joruri.html" class="bg-red-600 text-white px-4 py-2 rounded-full hover:bg-red-700 shadow-lg animate-pulse text-center">জরুরি দালালি</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-return text-white py-24 text-center relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10">
+                <i class="fa-solid fa-hand-holding-dollar text-[300px] absolute -bottom-10 -left-20 rotate-[-15deg]"></i>
+            </div>
+            <div class="max-w-7xl mx-auto px-4 relative z-10">
+                <h1 class="text-5xl md:text-7xl font-black mb-6 uppercase tracking-tighter text-red-500">টাকা ফেরতের <span class="text-white">অসম্ভব</span> নিয়ম</h1>
+                <p class="text-xl md:text-2xl font-bold text-slate-400">আমাদের ডিকশনারিতে "ফেরত" শব্দটির কোন অস্তিত্ব নাই।</p>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <section class="py-24 bg-white">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-black text-slate-900 mb-4">কেন আপনি টাকা ফেরত পাবেন না?</h2>
+                    <p class="text-slate-500 font-bold italic">নিচে আমাদের বৈজ্ঞানিক কারণগুলো ব্যাখ্যা করা হলো</p>
+                </div>
+
+                <div class="space-y-12">
+                    <!-- Clause 1 -->
+                    <div class="p-10 rounded-[40px] border-4 border-slate-100 bg-slate-50 refund-clause flex flex-col md:flex-row gap-8 items-center">
+                        <div class="text-7xl text-red-600 font-black opacity-20">০১</div>
+                        <div>
+                            <h3 class="text-2xl font-black mb-4 uppercase flex items-center"><i class="fa-solid fa-utensils mr-3"></i> বিরিয়ানি থিওরি</h3>
+                            <p class="text-lg font-medium text-slate-600">আপনার দেওয়া টাকা পাওয়া মাত্রই আমাদের কোষাধ্যক্ষ (Cashier) সেই টাকা দিয়ে বিরিয়ানি এবং বোরহানি কিনে ফেলেছে। পেট থেকে বিরিয়ানি ফেরত আনা যেহেতু অসম্ভব, তাই আপনার টাকাও ফেরত দেওয়া আইনত দণ্ডনীয় অপরাধ।</p>
+                        </div>
+                    </div>
+
+                    <!-- Clause 2 -->
+                    <div class="p-10 rounded-[40px] border-4 border-slate-100 bg-slate-50 refund-clause flex flex-col md:flex-row gap-8 items-center">
+                        <div class="text-7xl text-red-600 font-black opacity-20">০২</div>
+                        <div>
+                            <h3 class="text-2xl font-black mb-4 uppercase flex items-center"><i class="fa-solid fa-brain mr-3"></i> স্মৃতিশক্তি লোপ (Memory Loss)</h3>
+                            <p class="text-lg font-medium text-slate-600">টাকা হাতে পাওয়ার ৫ সেকেন্ডের মধ্যে আমাদের দালালের সাময়িকভাবে 'স্মৃতিশক্তি লোপ' পায়। আপনি কে, কেন টাকা দিয়েছেন বা আপনার সাথে কী কথা হয়েছে—তা আমরা কোনোভাবেই মনে করতে পারি না। রিফান্ড চাইলে আমরা আপনাকে চিনি না বলে দাবি করবো।</p>
+                        </div>
+                    </div>
+
+                    <!-- Clause 3 -->
+                    <div class="p-10 rounded-[40px] border-4 border-slate-100 bg-slate-50 refund-clause flex flex-col md:flex-row gap-8 items-center">
+                        <div class="text-7xl text-red-600 font-black opacity-20">০৩</div>
+                        <div>
+                            <h3 class="text-2xl font-black mb-4 uppercase flex items-center"><i class="fa-solid fa-cloud-showers-heavy mr-3"></i> আমানত রক্ষা</h3>
+                            <p class="text-lg font-medium text-slate-600">আপনার টাকা এখন আমাদের নিকট পবিত্র 'আমানত'। আমানতের খেয়ানত করা মহাপাপ। তাই আপনার মঙ্গল কামনায় আমরা সেই টাকা আর আপনাকে ফেরত দিয়ে পাপের ভাগীদার হতে চাই না।</p>
+                        </div>
+                    </div>
+
+                    <!-- Clause 4 -->
+                    <div class="p-10 rounded-[40px] border-4 border-slate-100 bg-slate-50 refund-clause flex flex-col md:flex-row gap-8 items-center">
+                        <div class="text-7xl text-red-600 font-black opacity-20">০৪</div>
+                        <div>
+                            <h3 class="text-2xl font-black mb-4 uppercase flex items-center"><i class="fa-solid fa-file-invoice-dollar mr-3"></i> ফাইল প্রসেসিং ফি</h3>
+                            <p class="text-lg font-medium text-slate-600">রিফান্ড রিকোয়েস্ট প্রসেস করার জন্য আমাদের আলাদা ৩০০০ টাকা ফি দিতে হয়। আপনি রিফান্ড চাইলে আগে সেই ফি বিকাশ করুন, তারপর আমরা আপনার রিকোয়েস্ট ডিলিট করে দেবো।</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The "Exception" Section -->
+        <section class="py-24 bg-red-600 text-white text-center">
+            <div class="max-w-4xl mx-auto px-4">
+                <h2 class="text-4xl md:text-5xl font-black mb-8">বিশেষ ব্যতিক্রমী ক্ষেত্র</h2>
+                <p class="text-xl font-bold mb-12 opacity-90">শুধুমাত্র নিচের পরিস্থিতিগুলোতে টাকা ফেরত দেওয়া হতে পারে:</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+                    <div class="bg-white/10 p-6 rounded-2xl border border-white/20">
+                        <p class="font-black italic">১. যদি আমাদের সভাপতি সাহেব ঘুমের ঘোরে হঠাৎ ফেরেশতা হয়ে যান (যা আজ পর্যন্ত ঘটে নাই)।</p>
+                    </div>
+                    <div class="bg-white/10 p-6 rounded-2xl border border-white/20">
+                        <p class="font-black italic">২. যদি টাকা নেওয়ার পর আপনি প্রমাণ করতে পারেন যে সেই টাকাগুলো জাল ছিল। (তবে সেক্ষেত্রে উল্টো মামলা খাবেন)।</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sarcastic Support -->
+        <section class="py-24 bg-slate-900 text-white text-center relative overflow-hidden">
+            <!-- Hidden Loading Overlay -->
+            <div id="complaint-overlay" class="hidden absolute inset-0 bg-black/95 z-50 flex items-center justify-center p-6">
+                <div class="max-w-md w-full text-center">
+                    <div id="complaint-status" class="text-2xl font-black text-yellow-500 mb-6">অভিযোগ স্ক্যান করা হচ্ছে...</div>
+                    <div class="w-full bg-slate-800 h-4 rounded-full overflow-hidden mb-6 border border-slate-700">
+                        <div id="complaint-progress" class="bg-red-600 h-full w-0 transition-all duration-300 shadow-[0_0_15px_rgba(220,38,38,0.5)]"></div>
+                    </div>
+                    <div id="complaint-msg" class="text-slate-400 font-bold italic h-8">সার্ভার আপনার পকেটের গভীরতা মাপছে...</div>
+                </div>
+            </div>
+
+            <div class="max-w-4xl mx-auto px-4">
+                <i class="fa-solid fa-trash-can text-6xl text-slate-700 mb-8"></i>
+                <h2 class="text-3xl font-bold mb-4">আপনার অভিযোগ সরাসরি আমাদের রিসাইকেল বিনে পাঠান</h2>
+                <p class="text-slate-400 font-medium mb-10">অভিযোগ করা আপনার 'অধিকার' না, এটি একটি 'অপরাধ'। তবুও লিখতে পারেন:</p>
+                
+                <div class="max-w-lg mx-auto mb-10 space-y-4">
+                    <input type="text" id="user-name" placeholder="আপনার ছদ্মনাম (পাসপোর্ট অনুযায়ী হলে খবর আছে)" class="w-full p-4 rounded-xl bg-slate-800 border border-slate-700 outline-none focus:border-red-600 font-bold text-white transition">
+                    <textarea id="user-complaint" placeholder="আপনার ফালতু অভিযোগ এখানে লিখুন..." class="w-full p-4 h-32 rounded-xl bg-slate-800 border border-slate-700 outline-none focus:border-red-600 font-bold text-white transition"></textarea>
+                </div>
+
+                <div id="submit-btn" class="inline-block px-10 py-5 bg-red-600 rounded-full font-black text-xl hover:scale-110 active:scale-95 transition cursor-pointer select-none shadow-xl hover:shadow-red-900/40" onclick="startComplaintProcess()">অভিযোগ জমা দিন</div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black text-slate-600 py-20 border-t-8 border-red-600 text-center">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-4xl font-black text-white mb-8 uppercase tracking-[15px]">দালাল সংঘ <span class="text-red-600">মানিকগঞ্জ</span></h2>
+            <div class="flex justify-center space-x-12 mb-16">
+                <a href="#" class="text-slate-400 hover:text-yellow-400 transition transform hover:scale-150"><i class="fa-brands fa-facebook-f text-4xl"></i></a>
+                <a href="#" class="text-slate-400 hover:text-green-400 transition transform hover:scale-150"><i class="fa-brands fa-whatsapp text-4xl"></i></a>
+            </div>
+            <p class="text-[12px] uppercase tracking-[12px] font-bold">&copy; ২০২৫ সকল দালালি সংরক্ষিত। লাইসেন্স নং: ৪২০/ঘুষ-শাখা।</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('nav-menu');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                menu.classList.add('flex');
+            } else {
+                menu.classList.add('hidden');
+                menu.classList.remove('flex');
+            }
+        }
+
+        function showCustomMessage(text) {
+            const modal = document.getElementById('custom-modal');
+            const modalText = document.getElementById('modal-text');
+            modalText.innerText = text;
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('custom-modal').style.display = 'none';
+        }
+
+        /**
+         * Sarcastic Complaint Submission Logic
+         */
+        function startComplaintProcess() {
+            const name = document.getElementById('user-name').value;
+            const complaint = document.getElementById('user-complaint').value;
+
+            if(!name || !complaint) {
+                showCustomMessage("আগে আপনার নাম আর অভিযোগ লিখুন, তারপর ডিলিট হওয়ার জন্য প্রস্তুত হন!");
+                return;
+            }
+
+            const overlay = document.getElementById('complaint-overlay');
+            const progress = document.getElementById('complaint-progress');
+            const status = document.getElementById('complaint-status');
+            const msg = document.getElementById('complaint-msg');
+
+            overlay.classList.remove('hidden');
+            let p = 0;
+            
+            const interval = setInterval(() => {
+                p += Math.floor(Math.random() * 5) + 2;
+                if (p > 100) p = 100;
+                
+                progress.style.width = p + '%';
+                
+                if (p < 20) msg.innerText = `মিস্টার ${name}, আপনার পকেটের গভীরতা মাপা হচ্ছে...`;
+                if (p >= 20 && p < 40) msg.innerText = "আপনার অভিযোগ থেকে 'অধিকার' শব্দটি ডিলিট করা হচ্ছে...";
+                if (p >= 40 && p < 60) msg.innerText = "সভাপতি সাহেব আপনার অভিযোগ দেখে হাসছেন...";
+                if (p >= 60 && p < 85) {
+                    status.innerText = "সতর্কবার্তা!";
+                    status.classList.add('text-red-500');
+                    msg.innerText = "রিফান্ড চাইলে জেল হওয়ার সম্ভাবনা চেক করা হচ্ছে...";
+                }
+                if (p >= 85 && p < 100) {
+                    status.innerText = "প্রায় শেষ...";
+                    msg.innerText = "অভিযোগটি রিসাইকেল বিনে ফেলার প্রস্তুতি সম্পন্ন...";
+                }
+                
+                if (p >= 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        overlay.classList.add('hidden');
+                        
+                        // Show the final sarcastic popup message
+                        showCustomMessage(`Success! জনাব ${name}, আপনার মেসেজটি সফলভাবে ডিলিট করা হয়েছে। আপনি কীভাবে ভাবলেন আপনি অভিযোগ করতে পারবেন? দালালি দেওয়া আপনার 'কর্তব্য', এখানে অভিযোগ করা আপনার 'অধিকার' নয়। এটা আপনার অধিকার নিয়া ফালতু চিন্তা করা বন্ধ করুন এবং বটতলায় এসে সভাপতির সাথে দেখা করুন!`);
+                        
+                        // Reset form
+                        progress.style.width = '0%';
+                        status.innerText = "অভিযোগ স্ক্যান করা হচ্ছে...";
+                        status.classList.remove('text-red-500');
+                        msg.innerText = "সার্ভার আপনার পকেটের গভীরতা মাপছে...";
+                        document.getElementById('user-name').value = "";
+                        document.getElementById('user-complaint').value = "";
+                    }, 500);
+                }
+            }, 100);
+        }
+    </script>
+</body>
+</html>
