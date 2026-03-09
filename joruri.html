@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>জরুরি দালালি - দালাল সংঘ, মানিকগঞ্জ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Updated Font Awesome to 6.5.2 to ensure icons work correctly -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: #fffaf0;
+            scroll-behavior: smooth;
+        }
+
+        .ticker-bg {
+            background: #be123c;
+        }
+
+        .emergency-gradient {
+            background: linear-gradient(135deg, #7f1d1d 0%, #000000 100%);
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        .animate-marquee {
+            animation: marquee 25s linear infinite;
+        }
+
+        .nav-link {
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: #15803d;
+        }
+
+        .nav-link.active {
+            color: #15803d;
+        }
+        
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #15803d;
+        }
+
+        .emergency-card {
+            transition: all 0.3s ease;
+        }
+        .emergency-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 25px 50px -12px rgba(220, 38, 38, 0.25);
+        }
+
+        /* Custom Modal Style */
+        #joruri-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        @keyframes popupIn {
+            from { opacity: 0; transform: scale(0.9) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .animate-popup {
+            animation: popupIn 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <!-- Custom Package Modal -->
+    <div id="joruri-modal">
+        <div class="bg-white p-10 rounded-[50px] max-w-lg w-full text-center shadow-2xl border-8 border-red-600 animate-popup">
+            <div class="w-24 h-24 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i id="joruri-icon" class="fa-solid fa-bolt text-4xl"></i>
+            </div>
+            <h2 id="joruri-title" class="text-3xl font-black text-slate-900 mb-4">অর্ডার প্রসেস হচ্ছে...</h2>
+            <p id="joruri-text" class="text-xl font-bold text-slate-600 mb-8 leading-relaxed"></p>
+            <button onclick="closeJoruriModal()" class="w-full bg-red-600 text-white py-4 rounded-2xl font-black hover:bg-red-700 transition shadow-lg uppercase">বুঝতে পারছি, টাকা নিয়ে আসছি!</button>
+        </div>
+    </div>
+
+    <!-- Header Section -->
+    <header class="sticky top-0 z-50">
+        <!-- Breaking News Ticker -->
+        <div class="ticker-bg text-white py-2 overflow-hidden whitespace-nowrap border-b-2 border-yellow-400">
+            <div class="animate-marquee inline-block font-bold">
+                জরুরি সতর্কবার্তা: আপনার ফাইল যদি লাল ফিতার দৌরাত্ম্যে আটকে থাকে, তবে দ্রুত বিরিয়ানি ফি জমা দিন... সিসিটিভি ক্যামেরায় চোখ পড়লে দ্রুত পকেটে হাত দিন... জরুরি সার্ভিসের টাকা ফেরতযোগ্য নহে!
+            </div>
+        </div>
+
+        <!-- Navigation Bar -->
+        <nav class="bg-white shadow-md border-b-4 border-green-700">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row justify-between items-center py-4 md:h-20">
+                    <div class="flex items-center justify-between w-full md:w-auto">
+                        <a href="index.html" class="flex items-center">
+                            <!-- Passport Icon Added in Header -->
+                            <i class="fa-solid fa-passport text-3xl text-green-800 mr-2"></i>
+                            <span class="text-2xl font-black text-green-800 tracking-tighter">দালাল <span class="text-red-600">সংঘ</span></span>
+                        </a>
+                        <!-- Fixed Mobile Menu Toggle -->
+                        <div class="md:hidden text-2xl cursor-pointer p-2" onclick="toggleMobileMenu()">
+                            <i class="fa-solid fa-bars"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Fixed Nav Menu Classes for mobile stability -->
+                    <div id="nav-menu" class="hidden md:flex flex-col md:flex-row items-center justify-center w-full md:w-auto space-y-4 md:space-y-0 md:space-x-6 font-bold text-sm mt-4 md:mt-0 pb-4 md:pb-0">
+                        <a href="index.html" class="nav-link px-2 py-1">মূলপাতা</a>
+                        <a href="about.html" class="nav-link px-2 py-1">আমাদের লক্ষ্য</a>
+                        <a href="niyom.html" class="nav-link px-2 py-1">নিয়মাবলী</a>
+                        <a href="return.html" class="nav-link px-2 py-1">ফেরত নীতি</a>
+                        <a href="contact.html" class="nav-link px-2 py-1">যোগাযোগ</a>
+                        <a href="joruri.html" class="bg-red-600 text-white px-6 py-2 rounded-full border-2 border-white shadow-lg animate-pulse text-center active">জরুরি দালালি</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="emergency-gradient text-white py-24 text-center relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10">
+                <i class="fa-solid fa-bolt text-[300px] absolute -top-10 -left-20 rotate-12"></i>
+            </div>
+            <div class="max-w-7xl mx-auto px-4 relative z-10">
+                <h1 class="text-5xl md:text-8xl font-black mb-6 uppercase tracking-tighter">রকেট <span class="text-yellow-400">দালালি</span></h1>
+                <p class="text-xl md:text-3xl font-bold text-slate-300 italic">"টাকা আপনার, টেনশন আমাদের। ফাইল নড়বে বাতাসের চেয়েও দ্রুত!"</p>
+            </div>
+        </section>
+
+        <!-- Emergency Packages -->
+        <section class="py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-black text-slate-900 mb-4 uppercase">ইমারজেন্সি স্পিড প্যাকেজ</h2>
+                    <p class="text-slate-500 font-bold italic">যত বেশি ক্যাশ, তত দ্রুত পাসপোর্ট হাতে আশ!</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                    <!-- Package 1 -->
+                    <div class="bg-slate-50 p-8 rounded-[40px] border-4 border-slate-100 emergency-card relative overflow-hidden">
+                        <div class="absolute top-4 right-4 text-slate-200 text-6xl font-black opacity-20">০২ দিন</div>
+                        <h3 class="text-2xl font-black text-red-700 mb-4">ঝড়ো হাওয়া প্যাকেজ</h3>
+                        <p class="text-4xl font-black text-slate-900 mb-6">৳ ২০,০০০</p>
+                        <ul class="space-y-4 font-bold text-slate-600 mb-8">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-red-500"></i> লাইন ছাড়া সরাসরি ফটো তোলা</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-red-500"></i> পুলিশ ভেরিফিকেশন হবে 'ফোনে ফোনে'</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-red-500"></i> সভাপতির সাথে ডাইরেক্ট খাতির</li>
+                        </ul>
+                        <button onclick="handlePackageClick('ঝড়ো হাওয়া')" class="w-full bg-red-600 text-white font-black py-4 rounded-2xl hover:bg-red-700 transition">অর্ডার দিন</button>
+                    </div>
+
+                    <!-- Package 2 -->
+                    <div class="bg-yellow-50 p-8 rounded-[40px] border-4 border-yellow-200 emergency-card relative scale-105 shadow-2xl z-10">
+                        <div class="bg-yellow-400 text-black text-xs font-black uppercase px-4 py-1 rounded-full absolute -top-3 left-1/2 -translate-x-1/2">সবচেয়ে ভয়ংকর</div>
+                        <div class="absolute top-4 right-4 text-yellow-200 text-6xl font-black opacity-30">২৪ ঘন্টা</div>
+                        <h3 class="text-2xl font-black text-yellow-700 mb-4">বজ্রবিদ্যুৎ সার্ভিস</h3>
+                        <p class="text-4xl font-black text-slate-900 mb-6">৳ ৪৫,০০০</p>
+                        <ul class="space-y-4 font-bold text-slate-700 mb-8">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-bolt text-yellow-600"></i> কম্পিউটার টাইপ করার আগেই প্রিন্ট</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-bolt text-yellow-600"></i> বড় সাহেবের রুমে স্পেশাল এসি সিটিং</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-bolt text-yellow-600"></i> ফাইল হারানো গ্যারান্টি (১০০% কাজ হবে)</li>
+                        </ul>
+                        <button onclick="handlePackageClick('বজ্রবিদ্যুৎ')" class="w-full bg-yellow-500 text-black font-black py-4 rounded-2xl hover:bg-yellow-400 transition shadow-lg">ইমারজেন্সি ডিল</button>
+                    </div>
+
+                    <!-- Package 3 -->
+                    <div class="bg-slate-900 p-8 rounded-[40px] border-4 border-slate-800 emergency-card text-white relative">
+                        <div class="absolute top-4 right-4 text-white/10 text-6xl font-black">০৬ ঘন্টা</div>
+                        <h3 class="text-2xl font-black text-red-500 mb-4">রকেট লঞ্চার (VIP)</h3>
+                        <p class="text-4xl font-black text-white mb-6">৳ ১,০০,০০০+</p>
+                        <ul class="space-y-4 font-bold text-slate-400 mb-8">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-crown text-yellow-500"></i> বাড়িতে গিয়ে সভাপতি পাসপোর্ট দিয়ে আসবেন</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-crown text-yellow-500"></i> ফিঙ্গারপ্রিন্ট ছাড়াই পাসপোর্ট তৈরি</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-crown text-yellow-500"></i> পুলিশের আইজি সাহেবের সাথে সরাসরি ডিনার</li>
+                        </ul>
+                        <button onclick="handlePackageClick('রকেট লঞ্চার')" class="w-full bg-white text-black font-black py-4 rounded-2xl hover:bg-slate-200 transition">ডন প্যাকেজ</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Emergency Calculator -->
+        <section class="py-24 bg-red-600">
+            <div class="max-w-4xl mx-auto px-4 text-center text-white">
+                <h2 class="text-4xl font-black mb-10 uppercase tracking-widest">ঘুষের স্পিড ক্যালকুলেটর</h2>
+                <div class="bg-white p-10 rounded-[50px] text-black shadow-2xl">
+                    <p class="text-lg font-bold mb-6 text-slate-500 italic">কত টাকা দিলে কত দ্রুত ফাইল নড়বে তা পরীক্ষা করুন</p>
+                    <div class="space-y-8">
+                        <input type="range" id="bribeRange" min="0" max="100000" step="1000" value="5000" class="w-full h-4 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-red-600" oninput="calculateSpeed(this.value)">
+                        <div class="flex justify-between font-black text-2xl">
+                            <span class="text-red-600">৳ <span id="amountDisplay">৫,০০০</span></span>
+                            <span class="text-green-700"><span id="speedDisplay">স্থবির</span> গতি</span>
+                        </div>
+                        <div id="funnyPrediction" class="p-6 bg-red-50 rounded-2xl border-2 border-dashed border-red-200 font-bold text-red-600 text-xl">
+                            "এই টাকায় পিয়ন আপনার দিকে ফিরেও তাকাবে না, বিরিয়ানি তো দূর!"
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sarcastic Warning -->
+        <section class="py-24 bg-white text-center">
+            <div class="max-w-4xl mx-auto px-4">
+                <i class="fa-solid fa-triangle-exclamation text-7xl text-red-600 mb-8 animate-triangle"></i>
+                <h2 class="text-5xl font-black mb-8 italic">"দ্রুত কাজ করতে হলে প্রশ্ন কম করবেন, টাকা বেশি দিবেন।"</h2>
+                <p class="text-slate-500 font-bold tracking-widest">— জরুরি বিভাগ, দালাল সংঘ</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black text-slate-600 py-20 border-t-8 border-red-600 text-center">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-4xl font-black text-white mb-8 uppercase tracking-[15px]">দালাল সংঘ <span class="text-red-600">মানিকগঞ্জ</span></h2>
+            <div class="flex justify-center space-x-12 mb-16">
+                <a href="#" class="text-slate-400 hover:text-yellow-400 transition transform hover:scale-150"><i class="fa-brands fa-facebook-f text-4xl"></i></a>
+                <a href="#" class="text-slate-400 hover:text-green-400 transition transform hover:scale-150"><i class="fa-brands fa-whatsapp text-4xl"></i></a>
+            </div>
+            <p class="text-[12px] uppercase tracking-[12px] font-bold">&copy; ২০২৫ সকল দালালি সংরক্ষিত। লাইসেন্স নং: ৪২০/ঘুষ-শাখা।</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('nav-menu');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                menu.classList.add('flex');
+            } else {
+                menu.classList.add('hidden');
+                menu.classList.remove('flex');
+            }
+        }
+
+        function calculateSpeed(value) {
+            const amountDisplay = document.getElementById('amountDisplay');
+            const speedDisplay = document.getElementById('speedDisplay');
+            const funnyPrediction = document.getElementById('funnyPrediction');
+            
+            amountDisplay.innerText = Number(value).toLocaleString();
+            
+            if (value < 5000) {
+                speedDisplay.innerText = "পকেট খালি";
+                funnyPrediction.innerText = "\"এই টাকায় আপনি তো বড় ভাইয়ের দোকানের লাল চাও পাবেন না, ফাইল তো দূরের কথা!\"";
+            } else if (value < 10000) {
+                speedDisplay.innerText = "স্থবির";
+                funnyPrediction.innerText = "\"পিয়ন আপনার ফাইলটা দেখছে, কিন্তু কলমে কালি নাই অজুহাতে ড্রয়ারে ভরে রাখছে।\"";
+            } else if (value < 18000) {
+                speedDisplay.innerText = "কচ্ছপ";
+                funnyPrediction.innerText = "\"পিয়ন ফাইলের ওপর থেকে ধুলো ঝাড়ছে, বিরিয়ানির গন্ধ এখনও তার নাকে পৌঁছায় নাই।\"";
+            } else if (value < 28000) {
+                speedDisplay.innerText = "জ্যামে আটকে";
+                funnyPrediction.innerText = "\"ফাইল ড্রয়ার থেকে বের হয়েছে, কিন্তু পিয়নের সাইকেলের চাকা লিক হয়ে গেছে!\"";
+            } else if (value < 38000) {
+                speedDisplay.innerText = "রিকশা";
+                funnyPrediction.innerText = "\"বড় সাহেব আপনার ফাইলটা হাতে নিছেন! তবে উনি এখন চা বিরতিতে গেছেন।\"";
+            } else if (value < 48000) {
+                speedDisplay.innerText = "সিএনজি";
+                funnyPrediction.innerText = "\"আপনার ফাইল এখন বড় সাহেবের এসির নিচে! উনি মিটিমিটি হাসছেন।\"";
+            } else if (value < 58000) {
+                speedDisplay.innerText = "বাস";
+                funnyPrediction.innerText = "\"কম্পিউটার অপারেটরকে বিরিয়ানি খাওয়ানো হয়েছে, ডাটা এন্ট্রি শুরু হয়েছে!\"";
+            } else if (value < 68000) {
+                speedDisplay.innerText = "বুলেট ট্রেন";
+                funnyPrediction.innerText = "\"বড় সাহেব আপনার নাম জপা শুরু করেছেন, পাসপোর্ট এখন প্রিন্টিং সেকশনে!\"";
+            } else if (value < 78000) {
+                speedDisplay.innerText = "ফাইটার জেট";
+                funnyPrediction.innerText = "\"পাসপোর্ট অফিসের সবাই আপনার ফাইল নিয়ে দৌড়াচ্ছে! আপনিই এখন ভিআইপি।\"";
+            } else if (value < 88000) {
+                speedDisplay.innerText = "টেলিপোর্ট";
+                funnyPrediction.innerText = "\"পাসপোর্ট প্রিন্ট হয়ে গেছে! সভাপতি সাহেব নিজে ল্যামিনেশন চেক করছেন।\"";
+            } else if (value < 96000) {
+                speedDisplay.innerText = "আলোর গতি";
+                funnyPrediction.innerText = "\"আপনি বিকাশ করার আগেই পাসপোর্ট আপনার বাসার দরজায় কড়া নাড়ছে!\"";
+            } else {
+                speedDisplay.innerText = "রকেট লঞ্চার";
+                funnyPrediction.innerText = "\"আপনি কে ভাই? আমাদের নতুন পার্টনার হবেন? আপনার পাসপোর্টের দরকার কি? পুরো মানিকগঞ্জই তো আপনার!\"";
+            }
+        }
+
+        /**
+         * Custom Modal Logic for Joruri Packages
+         */
+        function handlePackageClick(pkgType) {
+            const modal = document.getElementById('joruri-modal');
+            const title = document.getElementById('joruri-title');
+            const text = document.getElementById('joruri-text');
+            const icon = document.getElementById('joruri-icon');
+
+            modal.style.display = 'flex';
+
+            if(pkgType === 'ঝড়ো হাওয়া') {
+                title.innerText = "অর্ডার কবুল!";
+                text.innerText = "অভিনন্দন! আপনার ২০,০০০ টাকা খরচ করার জন্য আমরা বিরিয়ানি দোকানে অলরেডি অ্যাডভান্স বুকিং দিয়ে দিয়েছি। এখন আর না করার উপায় নাই। দ্রুত পকেটে হাত দিন এবং সভাপতির বিকাশ নম্বরে টাকা পাঠিয়ে পিন কোড দিন!";
+                icon.className = "fa-solid fa-wind text-4xl";
+            } 
+            else if(pkgType === 'বজ্রবিদ্যুৎ') {
+                title.innerText = "অ্যালার্ট! বজ্রবিদ্যুৎ অন!";
+                text.innerText = "২৪ ঘন্টার ডিল মানে আমাদের ঘুম হারাম! বড় সাহেবের এসির বিল মেটানোর জন্য এখনই ৪৫,০০০ টাকা নিয়ে সরাসরি পাসপোর্ট অফিসের পিছনে ৩ নম্বর বেঞ্চে চলে আসুন। ১ মিনিট দেরি করলে আপনার ফাইল ডিবি অফিসে পাঠিয়ে দেওয়া হবে!";
+                icon.className = "fa-solid fa-bolt text-4xl";
+            }
+            else if(pkgType === 'রকেট লঞ্চার') {
+                title.innerText = "আপনি কি ডন নাকি?";
+                text.innerText = "১ লক্ষ টাকা? আপনি কি রসিকতা করছেন নাকি আসলে পকেট গরম? এত টাকা দিলে পাসপোর্ট তো দূরের কথা, আমরা মানিকগঞ্জ অফিস আপনার নামে লিখে দেওয়ার চেষ্টা করবো! দয়া করে সভাপতির ব্যক্তিগত ডিনারের জন্য ক্যাশ নিয়ে রেডী থাকুন।";
+                icon.className = "fa-solid fa-crown text-4xl";
+            }
+        }
+
+        function closeJoruriModal() {
+            document.getElementById('joruri-modal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
